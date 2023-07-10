@@ -4,7 +4,7 @@ type PlaceCardProps = {
 
 function PlaceCard({additionalClassName}: PlaceCardProps): JSX.Element {
   return (
-    <article className={`${additionalClassName ? additionalClassName : ''} place-card`}>
+    <article className={`place-card ${additionalClassName || ''}`}>
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
