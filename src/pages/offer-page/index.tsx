@@ -120,7 +120,7 @@ function OfferPage(): JSX.Element {
                 </li>
               </ul>
               <div className="offer__price">
-                <b className="offer__price-value">€120</b>
+                <b className="offer__price-value">€120</b>{' '}
                 <span className="offer__price-text">&nbsp;night</span>
               </div>
               <div className="offer__inside">
@@ -337,7 +337,7 @@ function OfferPage(): JSX.Element {
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
                     <div className="place-card__price">
-                      <b className="place-card__price-value">€80</b>
+                      <b className="place-card__price-value">€80</b>{' '}
                       <span className="place-card__price-text">/&nbsp;night</span>
                     </div>
                     <button
@@ -381,7 +381,7 @@ function OfferPage(): JSX.Element {
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
                     <div className="place-card__price">
-                      <b className="place-card__price-value">€132</b>
+                      <b className="place-card__price-value">€132</b>{' '}
                       <span className="place-card__price-text">/&nbsp;night</span>
                     </div>
                     <button
@@ -428,7 +428,7 @@ function OfferPage(): JSX.Element {
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
                     <div className="place-card__price">
-                      <b className="place-card__price-value">€180</b>
+                      <b className="place-card__price-value">€180</b>{' '}
                       <span className="place-card__price-text">/&nbsp;night</span>
                     </div>
                     <button
