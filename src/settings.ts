@@ -1,3 +1,3 @@
-export const Data = {
+export const Settings = {
   OffersCount: 312,
 } as const;
