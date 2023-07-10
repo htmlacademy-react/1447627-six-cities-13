@@ -1,10 +1,11 @@
 import PlaceCard from '../../components/place-card/place-card';
+import {Settings} from '../../settings';
 
 type MainPageProps = {
-  offersCount: number;
+  offersCount?: number;
 }
 
-function MainPage({offersCount}: MainPageProps): JSX.Element {
+function MainPage({offersCount = Settings.OffersCount}: MainPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
