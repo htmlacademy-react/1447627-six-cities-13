@@ -116,11 +116,11 @@ function MainPage({offersCount = Settings.OffersCount}: MainPageProps): JSX.Elem
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <PlaceCard additionalClasses='cities__card'/>
-                <PlaceCard additionalClasses='cities__card'/>
-                <PlaceCard additionalClasses='cities__card'/>
-                <PlaceCard additionalClasses='cities__card'/>
-                <PlaceCard additionalClasses='cities__card'/>
+                <PlaceCard additionalClassName='cities__card'/>
+                <PlaceCard additionalClassName='cities__card'/>
+                <PlaceCard additionalClassName='cities__card'/>
+                <PlaceCard additionalClassName='cities__card'/>
+                <PlaceCard additionalClassName='cities__card'/>
               </div>
             </section>
             <div className="cities__right-section">

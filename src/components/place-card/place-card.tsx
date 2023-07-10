@@ -1,10 +1,10 @@
 type PlaceCardProps = {
-  additionalClasses?: string;
+  additionalClassName?: string;
 }
 
-function PlaceCard({additionalClasses}: PlaceCardProps): JSX.Element {
+function PlaceCard({additionalClassName}: PlaceCardProps): JSX.Element {
   return (
-    <article className={`${additionalClasses ? additionalClasses : ''} place-card`}>
+    <article className={`${additionalClassName ? additionalClassName : ''} place-card`}>
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
