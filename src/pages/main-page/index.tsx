@@ -1,4 +1,4 @@
-import PlaceCard from '../../components/place-card/place-card';
+import PlaceCard from '../../components/place-card';
 import {Settings} from '../../settings';
 
 type MainPageProps = {
