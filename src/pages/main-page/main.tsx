@@ -1,3 +1,4 @@
+import React from 'react';
 import PlaceCard from '../../components/place-card';
 import {Settings} from '../../settings';
 
@@ -5,7 +6,7 @@ type MainPageProps = {
   offersCount?: number;
 }
 
-function MainPage({offersCount = Settings.OffersCount}: MainPageProps): JSX.Element {
+function MainPage({offersCount = Settings.OffersCount}: MainPageProps): React.JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">

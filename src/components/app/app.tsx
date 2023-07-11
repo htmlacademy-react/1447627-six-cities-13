@@ -1,6 +1,7 @@
+import React from 'react';
 import MainPage from '../../pages/main-page';
 
-function App(): JSX.Element {
+function App(): React.JSX.Element {
   return(
     <MainPage />
   );
