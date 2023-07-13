@@ -22,7 +22,7 @@ function App(): React.JSX.Element {
             }
           />
           <Route path="login" element={<LoginPage />} />
-          <Route path="offer" element={<OfferPage />} />
+          <Route path="offer/:id" element={<OfferPage />} />
         </Route>
         <Route path="*" element={<Page404 />} />
       </Routes>
