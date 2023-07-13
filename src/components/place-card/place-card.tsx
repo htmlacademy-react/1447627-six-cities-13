@@ -1,8 +1,10 @@
+import React from 'react';
+
 type PlaceCardProps = {
   additionalClassName?: string;
 }
 
-function PlaceCard({additionalClassName}: PlaceCardProps): JSX.Element {
+function PlaceCard({additionalClassName}: PlaceCardProps): React.JSX.Element {
   return (
     <article className={`place-card ${additionalClassName || ''}`}>
       <div className="place-card__mark">

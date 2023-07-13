@@ -1,19 +1,22 @@
-function OfferPage(): JSX.Element {
+import React from 'react';
+import {Helmet} from 'react-helmet-async';
+import {useParams} from 'react-router-dom';
+import Logo from '../../components/logo';
+
+function OfferPage(): React.JSX.Element {
+  const params = useParams();
+  const offerId = params.id;
+
   return(
     <div className="page">
+      <Helmet>
+        <title>6 cities: offer</title>
+      </Helmet>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link" href="main.html">
-                <img
-                  className="header__logo"
-                  src="img/logo.svg"
-                  alt="6 cities logo"
-                  width={81}
-                  height={41}
-                />
-              </a>
+              <Logo additionalClassName="header__logo" isActive/>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
@@ -40,7 +43,7 @@ function OfferPage(): JSX.Element {
         </div>
       </header>
       <main className="page__main page__main--offer">
-        <section className="offer">
+        <section className="offer" data-id={offerId}>
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
               <div className="offer__image-wrapper">
