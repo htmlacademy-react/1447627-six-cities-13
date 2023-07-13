@@ -1,10 +1,10 @@
 import React from 'react';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import FavoritesPage from '../../pages/favorites-page';
-import LoginPage from '../../pages/login-page';
-import MainPage from '../../pages/main-page';
-import NotFoundPage from '../../pages/not-found-page';
-import OfferPage from '../../pages/offer-page';
+import FavoritesPage from '../../pages/favorites';
+import LoginPage from '../../pages/login';
+import MainPage from '../../pages/main';
+import NotFoundPage from '../../pages/not-found';
+import OfferPage from '../../pages/offer';
 import PrivateRoute from '../private-route';
 
 function App(): React.JSX.Element {
