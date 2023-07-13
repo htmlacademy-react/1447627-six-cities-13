@@ -27,9 +27,9 @@ function LogoImage({width = 81, height = 41}: LogoImageProps): React.JSX.Element
 
 function LogoOnMainPage({width, height, additionalClassName}: LogoBasicProps): React.JSX.Element {
   return(
-    <a className={`logo ${additionalClassName || ''}`}>
+    <div className={`logo ${additionalClassName || ''}`}>
       <LogoImage width={width} height={height}/>
-    </a>
+    </div>
   );
 }
 
