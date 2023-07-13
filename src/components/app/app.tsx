@@ -3,7 +3,7 @@ import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import FavoritesPage from '../../pages/favorites';
 import LoginPage from '../../pages/login';
 import MainPage from '../../pages/main';
-import NotFoundPage from '../../pages/not-found';
+import Page404 from '../../pages/404';
 import OfferPage from '../../pages/offer';
 import PrivateRoute from '../private-route';
 
@@ -24,7 +24,7 @@ function App(): React.JSX.Element {
           <Route path="login" element={<LoginPage />} />
           <Route path="offer" element={<OfferPage />} />
         </Route>
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>
   );

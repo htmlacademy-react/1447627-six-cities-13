@@ -1,6 +1,6 @@
 import React from 'react';
 
-function NotFoundPage(): React.JSX.Element {
+function Page404(): React.JSX.Element {
   return(
     <div className="page page--gray page--404">
       <header className="header">
@@ -30,4 +30,4 @@ function NotFoundPage(): React.JSX.Element {
   );
 }
 
-export default NotFoundPage;
+export default Page404;
