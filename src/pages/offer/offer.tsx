@@ -1,7 +1,11 @@
 import React from 'react';
+import {useParams} from 'react-router-dom';
 import Logo from '../../components/logo';
 
 function OfferPage(): React.JSX.Element {
+  const params = useParams();
+  const offerId = params.id;
+
   return(
     <div className="page">
       <header className="header">
@@ -35,7 +39,7 @@ function OfferPage(): React.JSX.Element {
         </div>
       </header>
       <main className="page__main page__main--offer">
-        <section className="offer">
+        <section className="offer" data-id={offerId}>
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
               <div className="offer__image-wrapper">
