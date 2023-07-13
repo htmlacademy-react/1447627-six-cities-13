@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import Logo from '../../components/logo';
 
 function Page404(): React.JSX.Element {
@@ -16,7 +17,7 @@ function Page404(): React.JSX.Element {
       <main className="page__main page__main--404">
         <div className="page__not-found not-found container">
           <b className="not-found__heading">404 Not Found</b>
-          <a className="not-found__button button button--primary" href="main.html">Вернуться на главную</a>
+          <Link className="not-found__button button button--primary" to="/">Вернуться на главную</Link>
         </div>
       </main>
     </div>
