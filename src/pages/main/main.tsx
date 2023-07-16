@@ -18,7 +18,7 @@ function MainPage({offersCount = Settings.OffersCount}: MainPageProps): React.JS
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <Logo additionalClassName="header__logo"/>
+              <Logo additionalClassName="header__logo" disabled/>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">

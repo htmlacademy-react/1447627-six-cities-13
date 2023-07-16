@@ -11,7 +11,7 @@ type LogoBasicProps = LogoImageProps & {
 }
 
 type LogoProps = LogoBasicProps & {
-  isActive?: boolean;
+  disabled?: boolean;
 };
 
 function LogoImage({width = 81, height = 41}: LogoImageProps): React.JSX.Element {
@@ -25,7 +25,7 @@ function LogoImage({width = 81, height = 41}: LogoImageProps): React.JSX.Element
   );
 }
 
-function LogoOnMainPage({width, height, additionalClassName}: LogoBasicProps): React.JSX.Element {
+function DisabledLogo({width, height, additionalClassName}: LogoBasicProps): React.JSX.Element {
   return(
     <div className={`logo ${additionalClassName || ''}`.trim()}>
       <LogoImage width={width} height={height}/>
@@ -33,7 +33,7 @@ function LogoOnMainPage({width, height, additionalClassName}: LogoBasicProps): R
   );
 }
 
-function LogoOnInnerPage({width, height, additionalClassName}: LogoBasicProps): React.JSX.Element {
+function EnabledLogo({width, height, additionalClassName}: LogoBasicProps): React.JSX.Element {
   return(
     <Link className={`logo ${additionalClassName || ''}`.trim()} to="/">
       <LogoImage width={width} height={height}/>
@@ -41,10 +41,10 @@ function LogoOnInnerPage({width, height, additionalClassName}: LogoBasicProps): 
   );
 }
 
-function Logo({isActive, additionalClassName, width, height}: LogoProps): React.JSX.Element {
-  return(isActive
-    ? <LogoOnInnerPage additionalClassName={additionalClassName} width={width} height={height}/>
-    : <LogoOnMainPage additionalClassName={additionalClassName} width={width} height={height}/>
+function Logo({width, height, additionalClassName, disabled}: LogoProps): React.JSX.Element {
+  return(disabled
+    ? <DisabledLogo additionalClassName={additionalClassName} width={width} height={height}/>
+    : <EnabledLogo additionalClassName={additionalClassName} width={width} height={height}/>
   );
 }
 
