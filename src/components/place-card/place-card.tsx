@@ -1,5 +1,6 @@
 import React from 'react';
 import BookmarkButton from '../bookmark-button';
+import Rating from '../rating';
 
 type PlaceCardProps = {
   additionalClassName?: string;
@@ -30,12 +31,7 @@ function PlaceCard({additionalClassName}: PlaceCardProps): React.JSX.Element {
           </div>
           <BookmarkButton additionalClassName="place-card__bookmark-button"/>
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{ width: '80%' }} />
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <Rating additionalClassName='place-card__rating' value={4} size='small' />
         <h2 className="place-card__name">
           <a href="#">
             Beautiful &amp; luxurious apartment at great location

@@ -3,6 +3,7 @@ import {Helmet} from 'react-helmet-async';
 import {useParams} from 'react-router-dom';
 import BookmarkButton from '../../components/bookmark-button';
 import Logo from '../../components/logo';
+import Rating from '../../components/rating';
 
 function OfferPage(): React.JSX.Element {
   const params = useParams();
@@ -102,13 +103,7 @@ function OfferPage(): React.JSX.Element {
                 </h1>
                 <BookmarkButton additionalClassName="offer__bookmark-button" width={31} height={33}/>
               </div>
-              <div className="offer__rating rating">
-                <div className="offer__stars rating__stars">
-                  <span style={{ width: '80%' }} />
-                  <span className="visually-hidden">Rating</span>
-                </div>
-                <span className="offer__rating-value rating__value">4.8</span>
-              </div>
+              <Rating additionalClassName="offer__rating" value={4.8} size="big" showLabel />
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">Apartment</li>
                 <li className="offer__feature offer__feature--bedrooms">
@@ -184,12 +179,7 @@ function OfferPage(): React.JSX.Element {
                       <span className="reviews__user-name">Max</span>
                     </div>
                     <div className="reviews__info">
-                      <div className="reviews__rating rating">
-                        <div className="reviews__stars rating__stars">
-                          <span style={{ width: '80%' }} />
-                          <span className="visually-hidden">Rating</span>
-                        </div>
-                      </div>
+                      <Rating additionalClassName="reviews__rating" value={4} />
                       <p className="reviews__text">
                         A quiet cozy and picturesque that hides behind a a river by
                         the unique lightness of Amsterdam. The building is green and
