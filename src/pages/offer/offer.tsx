@@ -1,6 +1,7 @@
 import React from 'react';
 import {Helmet} from 'react-helmet-async';
 import {useParams} from 'react-router-dom';
+import BookmarkButton from '../../components/bookmark-button';
 import Logo from '../../components/logo';
 
 function OfferPage(): React.JSX.Element {
@@ -99,12 +100,7 @@ function OfferPage(): React.JSX.Element {
                 <h1 className="offer__name">
                   Beautiful &amp; luxurious studio at great location
                 </h1>
-                <button className="offer__bookmark-button button" type="button">
-                  <svg className="offer__bookmark-icon" width={31} height={33}>
-                    <use xlinkHref="#icon-bookmark" />
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <BookmarkButton additionalClassName="offer__bookmark-button" width={31} height={33}/>
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">

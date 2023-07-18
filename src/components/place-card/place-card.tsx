@@ -1,4 +1,5 @@
 import React from 'react';
+import BookmarkButton from '../bookmark-button';
 
 type PlaceCardProps = {
   additionalClassName?: string;
@@ -27,19 +28,7 @@ function PlaceCard({additionalClassName}: PlaceCardProps): React.JSX.Element {
             <b className="place-card__price-value">€120</b>{' '}
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button
-            className="place-card__bookmark-button button"
-            type="button"
-          >
-            <svg
-              className="place-card__bookmark-icon"
-              width={18}
-              height={19}
-            >
-              <use xlinkHref="#icon-bookmark" />
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          <BookmarkButton additionalClassName="place-card__bookmark-button"/>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
