@@ -1,21 +1,28 @@
 import React from 'react';
 import BookmarkButton from '../bookmark-button';
 import Rating from '../rating';
+import styles from './place-card.module.css';
 
 type PlaceCardProps = {
   additionalClassName?: string;
+  grid?: 'horizontal';
+  isPremium?: boolean;
 }
 
-function PlaceCard({additionalClassName}: PlaceCardProps): React.JSX.Element {
+function PlaceCard({additionalClassName, grid, isPremium}: PlaceCardProps): React.JSX.Element {
+  const gridClassName = grid ? ` ${styles[`card--${grid}`]}` : '';
+
   return (
-    <article className={`place-card ${additionalClassName || ''}`.trim()}>
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
-      <div className="cities__image-wrapper place-card__image-wrapper">
+    <article className={`${styles.card}${gridClassName} ${additionalClassName || ''}`.trim()}>
+      {isPremium ? (
+        <div className={styles.mark}>
+          <span>Premium</span>
+        </div>
+      ) : null}
+      <div className={styles.imageWrapper}>
         <a href="#">
           <img
-            className="place-card__image"
+            className={styles.image}
             src="img/apartment-01.jpg"
             width={260}
             height={200}
@@ -23,21 +30,21 @@ function PlaceCard({additionalClassName}: PlaceCardProps): React.JSX.Element {
           />
         </a>
       </div>
-      <div className="place-card__info">
-        <div className="place-card__price-wrapper">
-          <div className="place-card__price">
-            <b className="place-card__price-value">€120</b>{' '}
-            <span className="place-card__price-text">/&nbsp;night</span>
+      <div className={styles.info}>
+        <div className={styles.priceWrapper}>
+          <div className={styles.price}>
+            <b className={styles.priceValue}>€120</b>{' '}
+            <span className={styles.priceText}>/&nbsp;night</span>
           </div>
-          <BookmarkButton additionalClassName="place-card__bookmark-button"/>
+          <BookmarkButton additionalClassName={styles.bookmarkButton}/>
         </div>
-        <Rating additionalClassName='place-card__rating' value={4} size='small' />
-        <h2 className="place-card__name">
+        <Rating additionalClassName={styles.rating} value={4} size='small' />
+        <h2 className={styles.name}>
           <a href="#">
             Beautiful &amp; luxurious apartment at great location
           </a>
         </h2>
-        <p className="place-card__type">Apartment</p>
+        <p className={styles.type}>Apartment</p>
       </div>
     </article>
   );

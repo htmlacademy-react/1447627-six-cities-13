@@ -114,11 +114,11 @@ function MainPage({offersCount = Settings.OffersCount}: MainPageProps): React.JS
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <PlaceCard additionalClassName='cities__card'/>
-                <PlaceCard additionalClassName='cities__card'/>
-                <PlaceCard additionalClassName='cities__card'/>
-                <PlaceCard additionalClassName='cities__card'/>
-                <PlaceCard additionalClassName='cities__card'/>
+                <PlaceCard additionalClassName='cities__card' />
+                <PlaceCard additionalClassName='cities__card' />
+                <PlaceCard additionalClassName='cities__card' />
+                <PlaceCard additionalClassName='cities__card' isPremium />
+                <PlaceCard additionalClassName='cities__card' />
               </div>
             </section>
             <div className="cities__right-section">
