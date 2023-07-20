@@ -1,14 +1,26 @@
 import React from 'react';
 import {Helmet} from 'react-helmet-async';
-import PlaceCard from '../../components/place-card';
 import Logo from '../../components/logo';
+import PlacesList from '../../components/places-list';
 import {Settings} from '../../settings';
+
+type Place = {
+  id: string;
+  title: string;
+  type: string;
+  price: number;
+  previewImage: string;
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
+}
 
 type MainPageProps = {
   offersCount?: number;
+  places: Place[];
 }
 
-function MainPage({offersCount = Settings.OffersCount}: MainPageProps): React.JSX.Element {
+function MainPage({offersCount = Settings.OffersCount, places}: MainPageProps): React.JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -113,13 +125,7 @@ function MainPage({offersCount = Settings.OffersCount}: MainPageProps): React.JS
                   </li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                <PlaceCard additionalClassName='cities__card' />
-                <PlaceCard additionalClassName='cities__card' />
-                <PlaceCard additionalClassName='cities__card' />
-                <PlaceCard additionalClassName='cities__card' isPremium />
-                <PlaceCard additionalClassName='cities__card' />
-              </div>
+              <PlacesList additionalClassName="cities__places-list tabs__content" places={places} grid="multicolumn" />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" />

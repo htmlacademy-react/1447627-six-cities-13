@@ -3,10 +3,25 @@ import {Helmet} from 'react-helmet-async';
 import {useParams} from 'react-router-dom';
 import BookmarkButton from '../../components/bookmark-button';
 import Logo from '../../components/logo';
-import PlaceCard from '../../components/place-card';
+import PlacesList from '../../components/places-list';
 import Rating from '../../components/rating';
 
-function OfferPage(): React.JSX.Element {
+type Place = {
+  id: string;
+  title: string;
+  type: string;
+  price: number;
+  previewImage: string;
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
+}
+
+type OfferPageProps = {
+  places: Place[];
+}
+
+function OfferPage({places}: OfferPageProps): React.JSX.Element {
   const params = useParams();
   const offerId = params.id;
 
@@ -311,11 +326,7 @@ function OfferPage(): React.JSX.Element {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <div className="near-places__list places__list">
-              <PlaceCard additionalClassName='near-places__card' />
-              <PlaceCard additionalClassName='near-places__card' />
-              <PlaceCard additionalClassName='near-places__card' />
-            </div>
+            <PlacesList additionalClassName="near-places__list tabs__content" places={places} grid="multicolumn" />
           </section>
         </div>
       </main>

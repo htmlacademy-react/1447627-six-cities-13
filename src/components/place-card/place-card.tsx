@@ -3,14 +3,26 @@ import BookmarkButton from '../bookmark-button';
 import Rating from '../rating';
 import styles from './place-card.module.css';
 
+type PlaceCardData = {
+  id: string;
+  title: string;
+  type: string;
+  price: number;
+  previewImage: string;
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
+}
+
 type PlaceCardProps = {
   additionalClassName?: string;
   grid?: 'horizontal';
-  isPremium?: boolean;
+  data: PlaceCardData;
 }
 
-function PlaceCard({additionalClassName, grid, isPremium}: PlaceCardProps): React.JSX.Element {
+function PlaceCard({additionalClassName, grid, data}: PlaceCardProps): React.JSX.Element {
   const gridClassName = grid ? ` ${styles[`card--${grid}`]}` : '';
+  const {title, type, price, previewImage, isFavorite, isPremium, rating} = data;
 
   return (
     <article className={`${styles.card}${gridClassName} ${additionalClassName || ''}`.trim()}>
@@ -23,7 +35,7 @@ function PlaceCard({additionalClassName, grid, isPremium}: PlaceCardProps): Reac
         <a href="#">
           <img
             className={styles.image}
-            src="img/apartment-01.jpg"
+            src={previewImage}
             width={260}
             height={200}
             alt="Place image"
@@ -33,18 +45,16 @@ function PlaceCard({additionalClassName, grid, isPremium}: PlaceCardProps): Reac
       <div className={styles.info}>
         <div className={styles.priceWrapper}>
           <div className={styles.price}>
-            <b className={styles.priceValue}>€120</b>{' '}
+            <b className={styles.priceValue}>€{price}</b>{' '}
             <span className={styles.priceText}>/&nbsp;night</span>
           </div>
-          <BookmarkButton additionalClassName={styles.bookmarkButton}/>
+          <BookmarkButton additionalClassName={styles.bookmarkButton} active={isFavorite}/>
         </div>
-        <Rating additionalClassName={styles.rating} value={4} size='small' />
+        <Rating additionalClassName={styles.rating} value={rating} size='small' />
         <h2 className={styles.name}>
-          <a href="#">
-            Beautiful &amp; luxurious apartment at great location
-          </a>
+          <a href="#">{title}</a>
         </h2>
-        <p className={styles.type}>Apartment</p>
+        <p className={styles.type}>{type}</p>
       </div>
     </article>
   );

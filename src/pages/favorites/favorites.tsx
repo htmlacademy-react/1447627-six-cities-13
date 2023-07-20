@@ -1,9 +1,24 @@
 import React from 'react';
 import {Helmet} from 'react-helmet-async';
 import Logo from '../../components/logo';
-import PlaceCard from '../../components/place-card';
+import PlacesList from '../../components/places-list';
 
-function FavoritesPage(): React.JSX.Element {
+type Place = {
+  id: string;
+  title: string;
+  type: string;
+  price: number;
+  previewImage: string;
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
+}
+
+type FavoritesPageProps = {
+  places: Place[];
+}
+
+function FavoritesPage({places}: FavoritesPageProps): React.JSX.Element {
   return(
     <div className="page">
       <Helmet>
@@ -52,10 +67,7 @@ function FavoritesPage(): React.JSX.Element {
                     </a>
                   </div>
                 </div>
-                <div className="favorites__places">
-                  <PlaceCard additionalClassName='favorites__card' isPremium grid="horizontal" />
-                  <PlaceCard additionalClassName='favorites__card' grid="horizontal" />
-                </div>
+                <PlacesList additionalClassName="favorites__places" places={places} cardGrid="horizontal" />
               </li>
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
@@ -66,7 +78,7 @@ function FavoritesPage(): React.JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <PlaceCard additionalClassName='favorites__card' grid="horizontal" />
+                  <PlacesList additionalClassName="favorites__places" places={places} cardGrid="horizontal" />
                 </div>
               </li>
             </ul>
