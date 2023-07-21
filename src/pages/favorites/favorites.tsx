@@ -1,7 +1,11 @@
 import React from 'react';
 import {Helmet} from 'react-helmet-async';
 import Logo from '../../components/logo';
-import PlacesList from '../../components/places-list';
+import Favorites from '../../components/favorites';
+
+type PlaceCity = {
+  name: string;
+}
 
 type Place = {
   id: string;
@@ -9,6 +13,7 @@ type Place = {
   type: string;
   price: number;
   previewImage: string;
+  city: PlaceCity;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
@@ -56,33 +61,7 @@ function FavoritesPage({places}: FavoritesPageProps): React.JSX.Element {
       </header>
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
-          <section className="favorites">
-            <h1 className="favorites__title">Saved listing</h1>
-            <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Amsterdam</span>
-                    </a>
-                  </div>
-                </div>
-                <PlacesList additionalClassName="favorites__places" places={places} cardGrid="horizontal" />
-              </li>
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Cologne</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  <PlacesList additionalClassName="favorites__places" places={places} cardGrid="horizontal" />
-                </div>
-              </li>
-            </ul>
-          </section>
+          <Favorites places={places}/>
         </div>
       </main>
       <footer className="footer container">

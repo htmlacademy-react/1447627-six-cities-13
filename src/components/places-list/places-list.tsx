@@ -25,7 +25,7 @@ function PlacesList({additionalClassName, grid, cardGrid, places}: PlacesListPro
 
   return (
     <div className={`${styles.placesList}${gridClassName} ${additionalClassName || ''}`.trim()}>
-      {places ? (
+      {places?.length ? (
         <>
           {places.map((place) => (
             <PlaceCard data={place} key={place.id} grid={cardGrid} />
