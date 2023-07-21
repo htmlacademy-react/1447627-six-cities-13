@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import BookmarkButton from '../bookmark-button';
 import Rating from '../rating';
 import styles from './place-card.module.css';
@@ -22,7 +23,7 @@ type PlaceCardProps = {
 
 function PlaceCard({additionalClassName, grid, data}: PlaceCardProps): React.JSX.Element {
   const gridClassName = grid ? ` ${styles[`card--${grid}`]}` : '';
-  const {title, type, price, previewImage, isFavorite, isPremium, rating} = data;
+  const {id, title, type, price, previewImage, isFavorite, isPremium, rating} = data;
 
   return (
     <article className={`${styles.card}${gridClassName} ${additionalClassName || ''}`.trim()}>
@@ -32,7 +33,7 @@ function PlaceCard({additionalClassName, grid, data}: PlaceCardProps): React.JSX
         </div>
       ) : null}
       <div className={styles.imageWrapper}>
-        <a href="#">
+        <Link to={`/offer/${id}`}>
           <img
             className={styles.image}
             src={previewImage}
@@ -40,7 +41,7 @@ function PlaceCard({additionalClassName, grid, data}: PlaceCardProps): React.JSX
             height={200}
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className={styles.info}>
         <div className={styles.priceWrapper}>
@@ -52,7 +53,7 @@ function PlaceCard({additionalClassName, grid, data}: PlaceCardProps): React.JSX
         </div>
         <Rating additionalClassName={styles.rating} value={rating} size='small' />
         <h2 className={styles.name}>
-          <a href="#">{title}</a>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className={styles.type}>{type}</p>
       </div>
