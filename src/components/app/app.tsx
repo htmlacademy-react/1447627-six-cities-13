@@ -8,12 +8,25 @@ import Page404 from '../../pages/404';
 import OfferPage from '../../pages/offer';
 import PrivateRoute from '../private-route';
 
+type Location = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+};
+
+type PlaceCity = {
+  name: string;
+  location: Location;
+}
+
 type Place = {
   id: string;
   title: string;
   type: string;
   price: number;
   previewImage: string;
+  city: PlaceCity;
+  location: Location;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;

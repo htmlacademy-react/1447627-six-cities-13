@@ -7,12 +7,25 @@ import Logo from '../../components/logo';
 import PlacesList from '../../components/places-list';
 import Rating from '../../components/rating';
 
+type Location = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+};
+
+type PlaceCity = {
+  name: string;
+  location: Location;
+}
+
 type Place = {
   id: string;
   title: string;
   type: string;
   price: number;
   previewImage: string;
+  city: PlaceCity;
+  location: Location;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;

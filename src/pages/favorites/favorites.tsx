@@ -4,8 +4,15 @@ import {Helmet} from 'react-helmet-async';
 import Logo from '../../components/logo';
 import Favorites from '../../components/favorites';
 
+type Location = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+};
+
 type PlaceCity = {
   name: string;
+  location: Location;
 }
 
 type Place = {
@@ -15,6 +22,7 @@ type Place = {
   price: number;
   previewImage: string;
   city: PlaceCity;
+  location: Location;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
