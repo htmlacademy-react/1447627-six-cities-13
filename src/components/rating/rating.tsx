@@ -16,7 +16,7 @@ function Rating({additionalClassName, value = 0, size, showLabel}: RatingProps):
   return(
     <div className={`${styles.rating}${sizeClassName} ${additionalClassName || ''}`.trim()}>
       <div className={styles.stars}>
-        <span style={{width: `${Math.floor(value) * SINGLE_STAR_ICON_WIDTH}%`}}></span>
+        <span style={{width: `${Math.round(value) * SINGLE_STAR_ICON_WIDTH}%`}}></span>
         <span className="visually-hidden">Rating:</span>
       </div>
       <span className={showLabel ? styles.value : 'visually-hidden'}>{value}</span>
