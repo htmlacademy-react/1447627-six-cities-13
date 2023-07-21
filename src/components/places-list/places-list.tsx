@@ -1,4 +1,5 @@
 import React from 'react';
+import {useState} from 'react';
 import PlaceCard from '../place-card';
 import styles from './places-list.module.css';
 
@@ -21,10 +22,12 @@ type PlacesListProps = {
 }
 
 function PlacesList({additionalClassName, grid, cardGrid, places}: PlacesListProps): React.JSX.Element {
+  const [activeCardId] = useState(null);
+
   const gridClassName = grid ? ` ${styles[`placesList--${grid}`]}` : '';
 
   return (
-    <div className={`${styles.placesList}${gridClassName} ${additionalClassName || ''}`.trim()}>
+    <div className={`${styles.placesList}${gridClassName} ${additionalClassName || ''}`.trim()} data-active={activeCardId}>
       {places?.length ? (
         <>
           {places.map((place) => (
