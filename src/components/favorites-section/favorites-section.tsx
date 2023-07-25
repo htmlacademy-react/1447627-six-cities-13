@@ -25,7 +25,7 @@ type FavoritesSectionProps = {
 function FavoritesSection({places}: FavoritesSectionProps): React.JSX.Element {
   if (places?.length) {
     const placesByCity: {
-      [propertyName: string]: Place[];
+      [city: string]: Place[];
     } = {};
 
     places.forEach((place) => {
