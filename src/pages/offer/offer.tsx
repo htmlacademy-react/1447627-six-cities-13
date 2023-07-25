@@ -38,7 +38,9 @@ type OfferPageProps = {
 
 function OfferPage({places}: OfferPageProps): React.JSX.Element {
   const params = useParams();
-  const offerId = params.id;
+  const data: Place = places.find((place) => place.id === params.id) as Place;
+
+  const {title, type, price, previewImage, isFavorite, isPremium, rating} = data;
 
   return(
     <div className="page">
@@ -76,48 +78,48 @@ function OfferPage({places}: OfferPageProps): React.JSX.Element {
         </div>
       </header>
       <main className="page__main page__main--offer">
-        <section className="offer" data-id={offerId}>
+        <section className="offer">
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
               <div className="offer__image-wrapper">
                 <img
                   className="offer__image"
-                  src="img/room.jpg"
+                  src={previewImage}
                   alt="Photo studio"
                 />
               </div>
               <div className="offer__image-wrapper">
                 <img
                   className="offer__image"
-                  src="img/apartment-01.jpg"
+                  src={previewImage}
                   alt="Photo studio"
                 />
               </div>
               <div className="offer__image-wrapper">
                 <img
                   className="offer__image"
-                  src="img/apartment-02.jpg"
+                  src={previewImage}
                   alt="Photo studio"
                 />
               </div>
               <div className="offer__image-wrapper">
                 <img
                   className="offer__image"
-                  src="img/apartment-03.jpg"
+                  src={previewImage}
                   alt="Photo studio"
                 />
               </div>
               <div className="offer__image-wrapper">
                 <img
                   className="offer__image"
-                  src="img/studio-01.jpg"
+                  src={previewImage}
                   alt="Photo studio"
                 />
               </div>
               <div className="offer__image-wrapper">
                 <img
                   className="offer__image"
-                  src="img/apartment-01.jpg"
+                  src={previewImage}
                   alt="Photo studio"
                 />
               </div>
@@ -125,18 +127,14 @@ function OfferPage({places}: OfferPageProps): React.JSX.Element {
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <div className="offer__mark">
-                <span>Premium</span>
-              </div>
+              {isPremium && <div className="offer__mark"><span>Premium</span></div>}
               <div className="offer__name-wrapper">
-                <h1 className="offer__name">
-                  Beautiful &amp; luxurious studio at great location
-                </h1>
-                <BookmarkButton additionalClassName="offer__bookmark-button" width={31} height={33}/>
+                <h1 className="offer__name">{title}</h1>
+                <BookmarkButton additionalClassName="offer__bookmark-button" width={31} height={33} active={isFavorite}/>
               </div>
-              <Rating additionalClassName="offer__rating" value={4.8} size="big" showLabel />
+              <Rating additionalClassName="offer__rating" value={rating} size="big" showLabel />
               <ul className="offer__features">
-                <li className="offer__feature offer__feature--entire">Apartment</li>
+                <li className="offer__feature offer__feature--entire">{type}</li>
                 <li className="offer__feature offer__feature--bedrooms">
                   3 Bedrooms
                 </li>
@@ -145,7 +143,7 @@ function OfferPage({places}: OfferPageProps): React.JSX.Element {
                 </li>
               </ul>
               <div className="offer__price">
-                <b className="offer__price-value">€120</b>{' '}
+                <b className="offer__price-value">€{price}</b>{' '}
                 <span className="offer__price-text">&nbsp;night</span>
               </div>
               <div className="offer__inside">
