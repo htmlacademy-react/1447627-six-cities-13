@@ -24,10 +24,13 @@ type PlacesListProps = {
 function PlacesList({additionalClassName, grid, cardGrid, places}: PlacesListProps): React.JSX.Element {
   const [activeCardId] = useState(null);
 
-  const gridClassName = grid ? ` ${styles[`placesList--${grid}`]}` : '';
-
   return (
-    <div className={`${styles.placesList}${gridClassName} ${additionalClassName || ''}`.trim()} data-active={activeCardId}>
+    <div className={`
+      ${styles.placesList}
+      ${grid ? `${styles[`placesList--${grid}`]}` : ''}
+      ${additionalClassName || ''}
+    `} data-active={activeCardId}
+    >
       {places?.length ? (
         <>
           {places.map((place) => (

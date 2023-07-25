@@ -9,11 +9,13 @@ type BookmarkButtonProps = {
 }
 
 function BookmarkButton({active, additionalClassName, width = 18, height = 19}: BookmarkButtonProps): React.JSX.Element {
-  const activeClass: string = active ? ` ${styles.activeButton}` : '';
-
   return (
     <button
-      className={`${styles.button}${activeClass} ${additionalClassName || ''}`.trim()}
+      className={`
+        ${styles.button}
+        ${active ? `${styles.activeButton}` : ''}
+        ${additionalClassName || ''}
+      `}
       type="button"
     >
       <svg

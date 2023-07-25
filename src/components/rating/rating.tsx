@@ -11,10 +11,13 @@ type RatingProps = {
 const SINGLE_STAR_ICON_WIDTH = 20;
 
 function Rating({additionalClassName, value = 0, size, showLabel}: RatingProps): React.JSX.Element {
-  const sizeClassName = size ? ` ${styles[`rating--${size}`]}` : '';
-
   return(
-    <div className={`${styles.rating}${sizeClassName} ${additionalClassName || ''}`.trim()}>
+    <div className={`
+      ${styles.rating}
+      ${size ? `${styles[`rating--${size}`]}` : ''}
+      ${additionalClassName || ''}
+    `}
+    >
       <div className={styles.stars}>
         <span style={{width: `${Math.round(value) * SINGLE_STAR_ICON_WIDTH}%`}}></span>
         <span className="visually-hidden">Rating:</span>

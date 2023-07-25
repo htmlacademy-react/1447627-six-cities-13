@@ -28,7 +28,7 @@ function LogoImage({width = 81, height = 41}: LogoImageProps): React.JSX.Element
 
 function DisabledLogo({width, height, additionalClassName}: LogoBasicProps): React.JSX.Element {
   return(
-    <div className={`${styles.logo} ${additionalClassName || ''}`.trim()}>
+    <div className={`${styles.logo} ${additionalClassName || ''}`}>
       <LogoImage width={width} height={height}/>
     </div>
   );
@@ -36,7 +36,7 @@ function DisabledLogo({width, height, additionalClassName}: LogoBasicProps): Rea
 
 function EnabledLogo({width, height, additionalClassName}: LogoBasicProps): React.JSX.Element {
   return(
-    <Link className={`${styles.logo} ${additionalClassName || ''}`.trim()} to="/">
+    <Link className={`${styles.logo} ${additionalClassName || ''}`} to="/">
       <LogoImage width={width} height={height}/>
     </Link>
   );

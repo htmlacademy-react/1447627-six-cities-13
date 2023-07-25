@@ -22,11 +22,15 @@ type PlaceCardProps = {
 }
 
 function PlaceCard({additionalClassName, grid, data}: PlaceCardProps): React.JSX.Element {
-  const gridClassName = grid ? ` ${styles[`card--${grid}`]}` : '';
   const {id, title, type, price, previewImage, isFavorite, isPremium, rating} = data;
 
   return (
-    <article className={`${styles.card}${gridClassName} ${additionalClassName || ''}`.trim()}>
+    <article className={`
+      ${styles.card}
+      ${grid ? `${styles[`card--${grid}`]}` : ''}
+      ${additionalClassName || ''}
+    `}
+    >
       {isPremium ? (
         <div className={styles.mark}>
           <span>Premium</span>
