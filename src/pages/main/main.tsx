@@ -1,14 +1,40 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
-import PlaceCard from '../../components/place-card';
 import Logo from '../../components/logo';
+import PlacesList from '../../components/places-list';
 import {Settings} from '../../settings';
+
+type Location = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+};
+
+type PlaceCity = {
+  name: string;
+  location: Location;
+}
+
+type Place = {
+  id: string;
+  title: string;
+  type: string;
+  price: number;
+  previewImage: string;
+  city: PlaceCity;
+  location: Location;
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
+}
 
 type MainPageProps = {
   offersCount?: number;
+  places: Place[];
 }
 
-function MainPage({offersCount = Settings.OffersCount}: MainPageProps): React.JSX.Element {
+function MainPage({offersCount = Settings.OffersCount, places}: MainPageProps): React.JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -18,21 +44,21 @@ function MainPage({offersCount = Settings.OffersCount}: MainPageProps): React.JS
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <Logo additionalClassName="header__logo"/>
+              <Logo additionalClassName="header__logo" disabled/>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <a
+                  <Link
                     className="header__nav-link header__nav-link--profile"
-                    href="#"
+                    to="/favorites"
                   >
                     <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                     <span className="header__user-name user__name">
                       Oliver.conner@gmail.com
                     </span>
                     <span className="header__favorite-count">3</span>
-                  </a>
+                  </Link>
                 </li>
                 <li className="header__nav-item">
                   <a className="header__nav-link" href="#">
@@ -113,13 +139,7 @@ function MainPage({offersCount = Settings.OffersCount}: MainPageProps): React.JS
                   </li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                <PlaceCard additionalClassName='cities__card'/>
-                <PlaceCard additionalClassName='cities__card'/>
-                <PlaceCard additionalClassName='cities__card'/>
-                <PlaceCard additionalClassName='cities__card'/>
-                <PlaceCard additionalClassName='cities__card'/>
-              </div>
+              <PlacesList additionalClassName="cities__places-list tabs__content" places={places} grid="multicolumn" />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" />

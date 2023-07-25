@@ -1,58 +1,65 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import BookmarkButton from '../bookmark-button';
+import Rating from '../rating';
+import styles from './place-card.module.css';
+
+type PlaceCardData = {
+  id: string;
+  title: string;
+  type: string;
+  price: number;
+  previewImage: string;
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
+}
 
 type PlaceCardProps = {
   additionalClassName?: string;
+  grid?: 'horizontal';
+  data: PlaceCardData;
 }
 
-function PlaceCard({additionalClassName}: PlaceCardProps): React.JSX.Element {
+function PlaceCard({additionalClassName, grid, data}: PlaceCardProps): React.JSX.Element {
+  const {id, title, type, price, previewImage, isFavorite, isPremium, rating} = data;
+
   return (
-    <article className={`place-card ${additionalClassName || ''}`}>
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
-      <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+    <article className={`
+      ${styles.card}
+      ${grid ? `${styles[`card--${grid}`]}` : ''}
+      ${additionalClassName || ''}
+    `}
+    >
+      {isPremium ? (
+        <div className={styles.mark}>
+          <span>Premium</span>
+        </div>
+      ) : null}
+      <div className={styles.imageWrapper}>
+        <Link to={`/offer/${id}`}>
           <img
-            className="place-card__image"
-            src="img/apartment-01.jpg"
+            className={styles.image}
+            src={previewImage}
             width={260}
             height={200}
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
-      <div className="place-card__info">
-        <div className="place-card__price-wrapper">
-          <div className="place-card__price">
-            <b className="place-card__price-value">€120</b>{' '}
-            <span className="place-card__price-text">/&nbsp;night</span>
+      <div className={styles.info}>
+        <div className={styles.priceWrapper}>
+          <div className={styles.price}>
+            <b className={styles.priceValue}>€{price}</b>{' '}
+            <span className={styles.priceText}>/&nbsp;night</span>
           </div>
-          <button
-            className="place-card__bookmark-button button"
-            type="button"
-          >
-            <svg
-              className="place-card__bookmark-icon"
-              width={18}
-              height={19}
-            >
-              <use xlinkHref="#icon-bookmark" />
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          <BookmarkButton additionalClassName={styles.bookmarkButton} active={isFavorite}/>
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{ width: '80%' }} />
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
-        <h2 className="place-card__name">
-          <a href="#">
-            Beautiful &amp; luxurious apartment at great location
-          </a>
+        <Rating additionalClassName={styles.rating} value={rating} size='small' />
+        <h2 className={styles.name}>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
-        <p className="place-card__type">Apartment</p>
+        <p className={styles.type}>{type}</p>
       </div>
     </article>
   );

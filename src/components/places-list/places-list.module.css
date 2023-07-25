@@ -1,0 +1,10 @@
+.placesList {
+  display: grid;
+  row-gap: 32px;
+}
+
+.placesList--multicolumn {
+  grid-template-columns: repeat(auto-fill, 260px);
+  justify-content: center;
+  gap: 24px 8px;
+}

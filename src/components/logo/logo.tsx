@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import styles from './logo.module.css';
 
 type LogoImageProps = {
   width?: number;
@@ -11,7 +12,7 @@ type LogoBasicProps = LogoImageProps & {
 }
 
 type LogoProps = LogoBasicProps & {
-  isActive?: boolean;
+  disabled?: boolean;
 };
 
 function LogoImage({width = 81, height = 41}: LogoImageProps): React.JSX.Element {
@@ -25,26 +26,26 @@ function LogoImage({width = 81, height = 41}: LogoImageProps): React.JSX.Element
   );
 }
 
-function LogoOnMainPage({width, height, additionalClassName}: LogoBasicProps): React.JSX.Element {
+function DisabledLogo({width, height, additionalClassName}: LogoBasicProps): React.JSX.Element {
   return(
-    <div className={`logo ${additionalClassName || ''}`}>
+    <div className={`${styles.logo} ${additionalClassName || ''}`}>
       <LogoImage width={width} height={height}/>
     </div>
   );
 }
 
-function LogoOnInnerPage({width, height, additionalClassName}: LogoBasicProps): React.JSX.Element {
+function EnabledLogo({width, height, additionalClassName}: LogoBasicProps): React.JSX.Element {
   return(
-    <Link className={`logo ${additionalClassName || ''}`} to="/">
+    <Link className={`${styles.logo} ${additionalClassName || ''}`} to="/">
       <LogoImage width={width} height={height}/>
     </Link>
   );
 }
 
-function Logo({isActive, additionalClassName, width, height}: LogoProps): React.JSX.Element {
-  return(isActive
-    ? <LogoOnInnerPage additionalClassName={additionalClassName} width={width} height={height}/>
-    : <LogoOnMainPage additionalClassName={additionalClassName} width={width} height={height}/>
+function Logo({width, height, additionalClassName, disabled}: LogoProps): React.JSX.Element {
+  return(disabled
+    ? <DisabledLogo additionalClassName={additionalClassName} width={width} height={height}/>
+    : <EnabledLogo additionalClassName={additionalClassName} width={width} height={height}/>
   );
 }
 
