@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './favorites.module.css';
+import styles from './favorites-section.module.css';
 import PlacesList from '../places-list';
 
 type PlaceCity = {
@@ -18,11 +18,11 @@ type Place = {
   rating: number;
 }
 
-type FavoritesProps = {
+type FavoritesSectionProps = {
   places?: Place[];
 }
 
-function Favorites({places}: FavoritesProps): React.JSX.Element {
+function FavoritesSection({places}: FavoritesSectionProps): React.JSX.Element {
   if (places?.length) {
     const placesByCity: {
       [propertyName: string]: Place[];
@@ -61,4 +61,4 @@ function Favorites({places}: FavoritesProps): React.JSX.Element {
 }
 
 
-export default Favorites;
+export default FavoritesSection;

@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import Logo from '../../components/logo';
-import Favorites from '../../components/favorites';
+import FavoritesSection from '../../components/favorites-section';
 
 type Location = {
   latitude: number;
@@ -70,7 +70,7 @@ function FavoritesPage({places}: FavoritesPageProps): React.JSX.Element {
       </header>
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
-          <Favorites places={places}/>
+          <FavoritesSection places={places}/>
         </div>
       </main>
       <footer className="footer container">
