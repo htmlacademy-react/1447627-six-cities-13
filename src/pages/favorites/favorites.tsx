@@ -3,30 +3,7 @@ import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import Logo from '../../components/logo';
 import FavoritesSection from '../../components/favorites-section';
-
-type Location = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-};
-
-type PlaceCity = {
-  name: string;
-  location: Location;
-}
-
-type Place = {
-  id: string;
-  title: string;
-  type: string;
-  price: number;
-  previewImage: string;
-  city: PlaceCity;
-  location: Location;
-  isFavorite: boolean;
-  isPremium: boolean;
-  rating: number;
-}
+import { Place } from '../../types';
 
 type FavoritesPageProps = {
   places: Place[];

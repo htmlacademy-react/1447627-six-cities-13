@@ -7,30 +7,7 @@ import Logo from '../../components/logo';
 import PlacesList from '../../components/places-list';
 import Rating from '../../components/rating';
 import ReviewForm from '../../components/review-form';
-
-type Location = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-};
-
-type PlaceCity = {
-  name: string;
-  location: Location;
-}
-
-type Place = {
-  id: string;
-  title: string;
-  type: string;
-  price: number;
-  previewImage: string;
-  city: PlaceCity;
-  location: Location;
-  isFavorite: boolean;
-  isPremium: boolean;
-  rating: number;
-}
+import { Place } from '../../types';
 
 type OfferPageProps = {
   places: Place[];

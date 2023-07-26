@@ -1,22 +1,7 @@
 import React from 'react';
 import styles from './favorites-section.module.css';
 import PlacesList from '../places-list';
-
-type PlaceCity = {
-  name: string;
-}
-
-type Place = {
-  id: string;
-  title: string;
-  type: string;
-  price: number;
-  previewImage: string;
-  city: PlaceCity;
-  isFavorite: boolean;
-  isPremium: boolean;
-  rating: number;
-}
+import { Place } from '../../types';
 
 type FavoritesSectionProps = {
   places?: Place[];
