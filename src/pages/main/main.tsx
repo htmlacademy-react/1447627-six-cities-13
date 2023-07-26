@@ -4,7 +4,7 @@ import {Helmet} from 'react-helmet-async';
 import Logo from '../../components/logo';
 import PlacesList from '../../components/places-list';
 import {Settings} from '../../settings';
-import { Place } from '../../types';
+import {Place} from '../../types';
 
 type MainPageProps = {
   offersCount?: number;

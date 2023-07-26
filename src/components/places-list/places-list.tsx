@@ -2,7 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 import PlaceCard from '../place-card';
 import styles from './places-list.module.css';
-import { Place } from '../../types';
+import {Place} from '../../types';
 
 type PlacesListProps = {
   additionalClassName?: string;

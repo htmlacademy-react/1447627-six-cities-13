@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import BookmarkButton from '../bookmark-button';
 import Rating from '../rating';
 import styles from './place-card.module.css';
-import { Place } from '../../types';
+import {Place} from '../../types';
 
 type PlaceCardProps = {
   additionalClassName?: string;

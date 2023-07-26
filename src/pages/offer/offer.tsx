@@ -7,7 +7,7 @@ import Logo from '../../components/logo';
 import PlacesList from '../../components/places-list';
 import Rating from '../../components/rating';
 import ReviewForm from '../../components/review-form';
-import { Place } from '../../types';
+import {Place} from '../../types';
 
 type OfferPageProps = {
   places: Place[];

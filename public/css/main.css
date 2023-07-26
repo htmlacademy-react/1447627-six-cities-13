@@ -53,7 +53,7 @@
 .near-places{margin:0;padding-bottom:27px;border-bottom:2px solid rgba(222,222,222,.5)}.near-places__title{margin-top:0;margin-bottom:25px;font-size:24px;line-height:1.1667;font-weight:700;font-style:oblique;text-align:center;color:#000}
 .near-places__list{margin-bottom:24px}
 .login{position:relative;width:520px;padding-top:19.6vh;padding-right:60px;padding-left:13px}.login::after{content:"";position:absolute;width:12.03vh;min-width:195px;height:100vh;min-height:450px;bottom:0;right:-2px;background-color:#f5f5f5;border-right:6px solid #4481c3;-webkit-transform:skew(-6.5deg);transform:skew(-6.5deg)}.login__title{position:relative;z-index:1;margin-top:0;margin-bottom:28px;font-size:32px;line-height:1.1875;font-weight:700;font-style:oblique}.login__form{position:relative;z-index:1;width:341px}.login__input-wrapper{margin-right:2px}.login__input{width:100%;margin-bottom:24px}.login__submit{width:100%}
-.favorites--empty{width:100%;padding:0 0 93px 38px}
+.favorites--empty.favorites--empty{width:100%;padding:0 0 93px 38px}
 
 .favorites__locations{display:-webkit-box;display:-ms-flexbox;display:flex;width:244px;margin-right:20px}
 

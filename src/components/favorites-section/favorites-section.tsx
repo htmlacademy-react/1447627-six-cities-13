@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './favorites-section.module.css';
 import PlacesList from '../places-list';
-import { Place } from '../../types';
+import {Place} from '../../types';
 
 type FavoritesSectionProps = {
   places?: Place[];
@@ -40,10 +40,17 @@ function FavoritesSection({places}: FavoritesSectionProps): React.JSX.Element {
         </ul>
       </section>
     );
+  } else {
+    return (
+      <section className={`${styles.favorites} favorites--empty`}>
+        <h1 className="visually-hidden">Favorites (empty)</h1>
+        <div className="favorites__status-wrapper">
+          <b className="favorites__status">Nothing yet saved.</b>
+          <p className="favorites__status-description">Save properties to narrow down search or plan your future trips.</p>
+        </div>
+      </section>
+    );
   }
-
-  return <h1 className={styles.title}>Ничего нет</h1>;
 }
-
 
 export default FavoritesSection;

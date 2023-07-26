@@ -7,7 +7,7 @@ import MainPage from '../../pages/main';
 import Page404 from '../../pages/404';
 import OfferPage from '../../pages/offer';
 import PrivateRoute from '../private-route';
-import { Place } from '../../types';
+import {Place} from '../../types';
 
 type AppProps = {
   places: Place[];
