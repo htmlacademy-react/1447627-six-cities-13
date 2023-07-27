@@ -1,15 +1,7 @@
-export type Location = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-};
+import Location from './location';
+import City from './city';
 
-export type City = {
-  name: string;
-  location: Location;
-}
-
-export type Place = {
+type Place = {
   id: string;
   title: string;
   type: string;
@@ -21,3 +13,5 @@ export type Place = {
   isPremium: boolean;
   rating: number;
 }
+
+export default Place;

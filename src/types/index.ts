@@ -1,3 +1,3 @@
-import { Place } from './types.ts';
+import Place from './place.ts';
 
-export type { Place };
+export type {Place};
