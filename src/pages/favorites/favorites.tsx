@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
+import Footer from '../../components/footer';
 import Logo from '../../components/logo';
 import FavoritesSection from '../../components/favorites-section';
 import {Place} from '../../types';
@@ -52,9 +53,7 @@ function FavoritesPage({places}: FavoritesPageProps): React.JSX.Element {
           <FavoritesSection places={places}/>
         </div>
       </main>
-      <footer className="footer container">
-        <Logo width={64} height={33}/>
-      </footer>
+      <Footer />
     </div>
   );
 }

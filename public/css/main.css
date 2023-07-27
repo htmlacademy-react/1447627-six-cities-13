@@ -62,8 +62,7 @@
 }
 
 .favorites__status-wrapper{width:420px;margin-top:16.7vh;margin-right:auto;margin-left:auto;padding-top:94px;text-align:center;background-image:url(../img/ico-saved.svg);background-size:60px 73px;background-position:center top;background-repeat:no-repeat}
-.favorites__status{display:block;margin-bottom:5px;font-size:32px;line-height:1.1875}.favorites__status-description{margin-top:0;margin-bottom:0;padding:0 30px;font-size:16px;line-height:1.5}.footer{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;padding-top:48px;padding-bottom:52px}
-
+.favorites__status{display:block;margin-bottom:5px;font-size:32px;line-height:1.1875}.favorites__status-description{margin-top:0;margin-bottom:0;padding:0 30px;font-size:16px;line-height:1.5}
 .page--404{height:100vh;display:grid;grid-template-rows: auto 1fr;}
 .page__main--404 {align-self:center;}
 .not-found{display:grid;justify-items:center;}
