@@ -1,3 +1,1 @@
-import useMap from './use-map';
-
-export default useMap;
+export {default} from './use-map';

@@ -1,3 +1,1 @@
-import PlacesList from './places-list';
-
-export default PlacesList;
+export {default} from './places-list';

@@ -1,3 +1,1 @@
-import useMapMarkers from './use-map-markers';
-
-export default useMapMarkers;
+export {default} from './use-map-markers';

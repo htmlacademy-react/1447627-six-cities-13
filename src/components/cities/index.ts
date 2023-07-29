@@ -1,3 +1,1 @@
-import Cities from './cities';
-
-export default Cities;
+export {default} from './cities';

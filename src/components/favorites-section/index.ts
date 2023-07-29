@@ -1,3 +1,1 @@
-import FavoritesSection from './favorites-section';
-
-export default FavoritesSection;
+export {default} from './favorites-section';
