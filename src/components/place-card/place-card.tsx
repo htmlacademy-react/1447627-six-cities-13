@@ -9,10 +9,33 @@ type PlaceCardProps = {
   additionalClassName?: string;
   grid?: 'horizontal';
   data: Place;
+  onPlaceCardMouseEnter?: (id: string) => void;
+  onPlaceCardMouseLeave?: () => void;
 }
 
-function PlaceCard({additionalClassName, grid, data}: PlaceCardProps): React.JSX.Element {
+function PlaceCard({
+  additionalClassName,
+  grid,
+  data,
+  onPlaceCardMouseEnter,
+  onPlaceCardMouseLeave
+}: PlaceCardProps): React.JSX.Element {
   const {id, title, type, price, previewImage, isFavorite, isPremium, rating} = data;
+
+  let handlePlaceCardMouseEnter;
+  let handlePlaceCardMouseLeave;
+
+  if (onPlaceCardMouseEnter) {
+    handlePlaceCardMouseEnter = () => {
+      onPlaceCardMouseEnter(id);
+    };
+  }
+
+  if (onPlaceCardMouseLeave) {
+    handlePlaceCardMouseLeave = () => {
+      onPlaceCardMouseLeave();
+    };
+  }
 
   return (
     <article className={`
@@ -20,6 +43,8 @@ function PlaceCard({additionalClassName, grid, data}: PlaceCardProps): React.JSX
       ${grid ? `${styles[`card--${grid}`]}` : ''}
       ${additionalClassName || ''}
     `}
+    onMouseEnter={handlePlaceCardMouseEnter}
+    onMouseLeave={handlePlaceCardMouseLeave}
     >
       {isPremium ? (
         <div className={styles.mark}>
