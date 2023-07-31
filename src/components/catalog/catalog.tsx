@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
-import Map from '../../components/map';
-import PlacesList from '../../components/places-list';
+import Map from '../map';
+import PlacesList from '../places-list';
 import {Settings} from '../../settings';
 import {Place} from '../../types';
 
-type CitiesProps = {
+type CatalogProps = {
   offersCount?: number;
   places: Place[];
 }
 
-function Cities({offersCount = Settings.OffersCount, places}: CitiesProps): React.JSX.Element {
+function Catalog({offersCount = Settings.OffersCount, places}: CatalogProps): React.JSX.Element {
   const [activePlaceId, setActivePlaceId] = useState('');
   const CURRENT_CITY = 'Amsterdam';
 
@@ -77,4 +77,4 @@ function Cities({offersCount = Settings.OffersCount, places}: CitiesProps): Reac
   );
 }
 
-export default Cities;
+export default Catalog;

@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import Logo from '../../components/logo';
-import Cities from '../../components/cities';
+import Catalog from '../../components/catalog';
 import {Place} from '../../types';
 
 type MainPageProps = {
@@ -83,7 +83,7 @@ function MainPage({places}: MainPageProps): React.JSX.Element {
             </ul>
           </section>
         </div>
-        <Cities places={places}/>
+        <Catalog places={places}/>
       </main>
     </div>
   );
