@@ -1,4 +1,4 @@
-import Place from './place.ts';
 import Location from './location.ts';
+import Place from './place.ts';
 
-export type {Place, Location};
+export type {Location, Place};
