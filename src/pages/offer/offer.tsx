@@ -196,7 +196,7 @@ function OfferPage({places, reviews}: OfferPageProps): React.JSX.Element {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <PlacesList additionalClassName="near-places__list tabs__content" places={places} grid="multicolumn" />
+            <PlacesList additionalClassName="near-places__list tabs__content" places={places.slice(0, NEARBY_PLACES_COUNT)} grid="multicolumn" />
           </section>
         </div>
       </main>
