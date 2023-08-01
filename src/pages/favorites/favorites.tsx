@@ -1,40 +1,20 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
+import Footer from '../../components/footer';
 import Logo from '../../components/logo';
 import FavoritesSection from '../../components/favorites-section';
-
-type Location = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-};
-
-type PlaceCity = {
-  name: string;
-  location: Location;
-}
-
-type Place = {
-  id: string;
-  title: string;
-  type: string;
-  price: number;
-  previewImage: string;
-  city: PlaceCity;
-  location: Location;
-  isFavorite: boolean;
-  isPremium: boolean;
-  rating: number;
-}
+import {Place} from '../../types';
 
 type FavoritesPageProps = {
   places: Place[];
 }
 
 function FavoritesPage({places}: FavoritesPageProps): React.JSX.Element {
+  const isEmpty = !places.length;
+
   return(
-    <div className="page">
+    <div className={`page ${isEmpty ? 'page--favorites-empty' : ''}`}>
       <Helmet>
         <title>6 cities: favorites</title>
       </Helmet>
@@ -68,14 +48,12 @@ function FavoritesPage({places}: FavoritesPageProps): React.JSX.Element {
           </div>
         </div>
       </header>
-      <main className="page__main page__main--favorites">
+      <main className={`page__main page__main--favorites ${isEmpty ? 'page__main--favorites-empty' : ''}`}>
         <div className="page__favorites-container container">
           <FavoritesSection places={places}/>
         </div>
       </main>
-      <footer className="footer container">
-        <Logo width={64} height={33}/>
-      </footer>
+      <Footer />
     </div>
   );
 }

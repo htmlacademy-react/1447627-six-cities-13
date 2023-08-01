@@ -1,3 +1,1 @@
-import Rating from './rating';
-
-export default Rating;
+export {default} from './rating';

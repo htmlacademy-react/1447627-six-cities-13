@@ -1,3 +1,1 @@
-import BookmarkButton from './bookmark-button';
-
-export default BookmarkButton;
+export {default} from './bookmark-button';

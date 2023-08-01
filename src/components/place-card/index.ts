@@ -1,3 +1,1 @@
-import PlaceCard from './place-card';
-
-export default PlaceCard;
+export {default} from './place-card';
