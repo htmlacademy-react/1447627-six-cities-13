@@ -1,6 +1,6 @@
 const places = [
   {
-    id: window.crypto.randomUUID(),
+    id: '1',
     title: 'Beautiful & luxurious apartment at great location',
     type: 'Apartment',
     price: 120,
@@ -23,7 +23,7 @@ const places = [
     rating: 4.1,
   },
   {
-    id: window.crypto.randomUUID(),
+    id: '2',
     title: 'Wood and stone place',
     type: 'Private room',
     price: 80,
@@ -46,7 +46,7 @@ const places = [
     rating: 2.7,
   },
   {
-    id: window.crypto.randomUUID(),
+    id: '3',
     title: 'Canal View Prinsengracht',
     type: 'Apartment',
     price: 132,
@@ -69,7 +69,7 @@ const places = [
     rating: 3.3,
   },
   {
-    id: window.crypto.randomUUID(),
+    id: '4',
     title: 'Nice, cozy, warm big bed apartment',
     type: 'Apartment',
     price: 180,
