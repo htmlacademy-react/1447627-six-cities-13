@@ -4,6 +4,7 @@ import {Helmet} from 'react-helmet-async';
 import {useParams} from 'react-router-dom';
 import BookmarkButton from '../../components/bookmark-button';
 import Logo from '../../components/logo';
+import Map from '../../components/map';
 import PlacesList from '../../components/places-list';
 import Rating from '../../components/rating';
 import Reviews from '../../components/reviews';
@@ -14,11 +15,24 @@ type OfferPageProps = {
   reviews: Review[];
 }
 
+const NEARBY_PLACES_COUNT = 3;
+
 function OfferPage({places, reviews}: OfferPageProps): React.JSX.Element {
   const params = useParams();
   const data: Place = places.find((place) => place.id === params.id) as Place;
 
-  const {title, type, price, previewImage, isFavorite, isPremium, rating} = data;
+  const {
+    id,
+    title,
+    type,
+    price,
+    previewImage,
+    city: {
+      location
+    },
+    isFavorite,
+    isPremium,
+    rating} = data;
 
   return(
     <div className="page">
@@ -170,7 +184,12 @@ function OfferPage({places, reviews}: OfferPageProps): React.JSX.Element {
               <Reviews additionalClassName='offer__reviews' reviews={reviews} />
             </div>
           </div>
-          <section className="offer__map map" />
+          <Map
+            additionalClassName='offer__map'
+            location={location}
+            places={places.slice(0, NEARBY_PLACES_COUNT + 1)}
+            activePlaceId={id}
+          />
         </section>
         <div className="container">
           <section className="near-places places">
