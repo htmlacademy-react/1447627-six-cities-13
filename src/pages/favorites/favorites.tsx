@@ -11,7 +11,7 @@ type FavoritesPageProps = {
 }
 
 function FavoritesPage({places}: FavoritesPageProps): React.JSX.Element {
-  const isEmpty = !places?.length;
+  const isEmpty = !places.length;
 
   return(
     <div className={`page ${isEmpty ? 'page--favorites-empty' : ''}`}>
