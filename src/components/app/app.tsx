@@ -20,7 +20,7 @@ function App({places, reviews}: AppProps): React.JSX.Element {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route index element={<MainPage places={places} />} />
+            <Route index element={<MainPage />} />
             <Route
               path="favorites"
               element={
