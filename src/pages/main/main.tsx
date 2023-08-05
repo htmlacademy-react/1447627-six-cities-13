@@ -55,7 +55,7 @@ function MainPage(): React.JSX.Element {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <Filter cities={CITIES} />
-        <Catalog places={places} />
+        <Catalog allPlaces={places} />
       </main>
     </div>
   );
