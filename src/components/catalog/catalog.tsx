@@ -1,17 +1,20 @@
 import React, {useState} from 'react';
 import Map from '../map';
 import PlacesList from '../places-list';
+import Sorting from '../sorting';
 import {Place} from '../../types';
 import useAppSelector from '../../hooks/use-app-selector';
 import cn from 'classnames';
+import {SortingType} from '../../const';
 
 type CatalogProps = {
-  places: Place[];
+  allPlaces: Place[];
 }
 
-function Catalog({places}: CatalogProps): React.JSX.Element {
+function Catalog({allPlaces}: CatalogProps): React.JSX.Element {
   const [activePlaceId, setActivePlaceId] = useState('');
   const currentCity = useAppSelector((state) => state.filter.city);
+  const [sortingType, setSortingType] = useState(SortingType.Popular);
 
   const handlePlaceCardMouseEnter = (id: string): void => {
     setActivePlaceId(id);
@@ -21,7 +24,26 @@ function Catalog({places}: CatalogProps): React.JSX.Element {
     setActivePlaceId('');
   };
 
-  const placesByCurrentCity = places.filter((place) => place.city.name === currentCity);
+  const changeSortingType = (type: SortingType): void => {
+    setSortingType(type);
+  };
+
+  const sortPlaces = (places: Place[], type: SortingType) => {
+    switch (type) {
+      case SortingType.PriceDecrease:
+        return places.sort((a, b) => b.price - a.price);
+      case SortingType.PriceIncrease:
+        return places.sort((a, b) => a.price - b.price);
+      case SortingType.RatingDecrease:
+        return places.sort((a, b) => b.rating - a.rating);
+      case SortingType.Popular:
+      default:
+        return places;
+    }
+  };
+
+  const placesByCurrentCity = allPlaces.filter((place) => place.city.name === currentCity);
+  const sortedPlacesByCurrentCity = sortPlaces(placesByCurrentCity.slice(), sortingType);
 
   let currentCityLocation;
 
@@ -41,35 +63,10 @@ function Catalog({places}: CatalogProps): React.JSX.Element {
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">{placesByCurrentCity.length} places to stay in {currentCity}</b>
-            <form className="places__sorting" action="#" method="get">
-              <span className="places__sorting-caption">Sort by</span>{' '}
-              <span className="places__sorting-type" tabIndex={0}>
-                Popular
-                <svg className="places__sorting-arrow" width={7} height={4}>
-                  <use xlinkHref="#icon-arrow-select" />
-                </svg>
-              </span>
-              <ul className="places__options places__options--custom places__options--opened">
-                <li
-                  className="places__option places__option--active"
-                  tabIndex={0}
-                >
-                  Popular
-                </li>
-                <li className="places__option" tabIndex={0}>
-                  Price: low to high
-                </li>
-                <li className="places__option" tabIndex={0}>
-                  Price: high to low
-                </li>
-                <li className="places__option" tabIndex={0}>
-                  Top rated first
-                </li>
-              </ul>
-            </form>
+            <Sorting currentType={sortingType} onChangeSortingType={changeSortingType} />
             <PlacesList
               additionalClassName="cities__places-list tabs__content"
-              places={placesByCurrentCity}
+              places={sortedPlacesByCurrentCity}
               grid="multicolumn"
               onPlaceCardMouseEnter={handlePlaceCardMouseEnter}
               onPlaceCardMouseLeave={handlePlaceCardMouseLeave}
