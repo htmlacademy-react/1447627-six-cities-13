@@ -1,7 +1,10 @@
 import {createAction} from '@reduxjs/toolkit';
+import {Places} from '../types';
 
 export const setFilterCity = createAction('filter/setCity', (city: string) => ({
   payload: city
 }));
 
-export const getPlaces = createAction('data/getPlaces');
+export const loadAllPlaces = createAction<Places>('data/loadAllPlaces');
+
+export const setPlacesDataLoadingStatus = createAction<boolean>('data/setPlacesDataLoadingStatus');

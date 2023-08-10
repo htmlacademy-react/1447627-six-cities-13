@@ -1,21 +1,16 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import Filter from '../../components/filter';
 import Logo from '../../components/logo';
 import Catalog from '../../components/catalog';
+import Spinner from '../../components/spinner';
 import {CITIES} from '../../const';
-import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';
-import {getPlaces} from '../../store/action';
 
 function MainPage(): React.JSX.Element {
-  const dispatch = useAppDispatch();
   const places = useAppSelector((state) => state.places);
-
-  useEffect(() => {
-    dispatch(getPlaces());
-  }, [dispatch]);
+  const isPlacesDataLoading = useAppSelector((state) => state.isPlacesDataLoading);
 
   return (
     <div className="page page--gray page--main">
@@ -54,8 +49,16 @@ function MainPage(): React.JSX.Element {
       </header>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <Filter cities={CITIES} />
-        <Catalog allPlaces={places} />
+        {isPlacesDataLoading ? (
+          <div className="page__spinner">
+            <Spinner />
+          </div>
+        ) : (
+          <>
+            <Filter cities={CITIES} />
+            <Catalog allPlaces={places} />
+          </>
+        )}
       </main>
     </div>
   );
