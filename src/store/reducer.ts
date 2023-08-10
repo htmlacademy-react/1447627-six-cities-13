@@ -1,7 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {setFilterCity, getPlaces} from './action';
+import {setFilterCity, loadAllPlaces, setPlacesDataLoadingStatus} from './action';
 import {CITIES} from '../const';
-import places from '../mocks/places';
 import {Place} from '../types';
 
 const initialState: {
@@ -9,11 +8,13 @@ const initialState: {
     city: string;
   };
   places: Place[];
+  isPlacesDataLoading: boolean;
 } = {
   filter: {
     city: CITIES[0]
   },
-  places: []
+  places: [],
+  isPlacesDataLoading: false
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -21,8 +22,11 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setFilterCity, (state, action) => {
       state.filter.city = action.payload;
     })
-    .addCase(getPlaces, (state) => {
-      state.places = places;
+    .addCase(loadAllPlaces , (state, action) => {
+      state.places = action.payload;
+    })
+    .addCase(setPlacesDataLoadingStatus, (state, action) => {
+      state.isPlacesDataLoading = action.payload;
     });
 });
 

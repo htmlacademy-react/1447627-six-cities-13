@@ -2,6 +2,7 @@ import React, {useRef} from 'react';
 import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/use-map';
 import useMapMarkers from '../../hooks/use-map-markers';
+import useMapView from '../../hooks/use-map-view';
 import {Place, Location} from '../../types';
 
 type MapProps = {
@@ -15,6 +16,7 @@ function Map({additionalClassName, location, places, activePlaceId = ''}: MapPro
   const mapRef = useRef(null);
   const map = useMap(mapRef, location);
   useMapMarkers(map, places, activePlaceId);
+  useMapView(map, location);
 
   return (
     <section

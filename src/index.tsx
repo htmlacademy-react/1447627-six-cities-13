@@ -5,6 +5,9 @@ import App from './components/app';
 import places from './mocks/places';
 import reviews from './mocks/reviews';
 import {store} from './store';
+import {fetchAllPlacesAction} from './store/api-actions';
+
+store.dispatch(fetchAllPlacesAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
