@@ -14,7 +14,7 @@ type MapProps = {
 
 function Map({additionalClassName, location, places, activePlaceId = ''}: MapProps): React.JSX.Element {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, location);
+  const map = useMap(mapRef);
   useMapMarkers(map, places, activePlaceId);
   useMapView(map, location);
 

@@ -1,20 +1,29 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {setFilterCity, loadAllPlaces, setPlacesDataLoadingStatus} from './action';
-import {CITIES} from '../const';
+import {
+  setFilterCity,
+  loadAllPlaces,
+  setPlacesDataLoadingStatus,
+  requireAuthorization
+} from './action';
+import {AuthorizationStatus, CITIES} from '../const';
 import {Place} from '../types';
 
-const initialState: {
+type InitialState = {
   filter: {
     city: string;
   };
   places: Place[];
   isPlacesDataLoading: boolean;
-} = {
+  authorizationStatus: AuthorizationStatus;
+}
+
+const initialState: InitialState = {
   filter: {
     city: CITIES[0]
   },
   places: [],
-  isPlacesDataLoading: false
+  isPlacesDataLoading: false,
+  authorizationStatus: AuthorizationStatus.Unknown
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -27,6 +36,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setPlacesDataLoadingStatus, (state, action) => {
       state.isPlacesDataLoading = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 

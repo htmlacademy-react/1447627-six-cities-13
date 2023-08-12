@@ -1,3 +1,11 @@
+export enum AppRoute {
+  Favorites = '/favorites',
+  Login = '/login',
+  Offer = '/offer',
+  Root = '/',
+  Page404 = '*'
+}
+
 export const CITIES = [
   'Paris',
   'Cologne',
@@ -7,6 +15,12 @@ export const CITIES = [
   'Dusseldorf'
 ];
 
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN'
+}
+
 export enum SortingType {
   Popular = 'Popular',
   PriceIncrease = 'Price: low to high',
@@ -15,5 +29,7 @@ export enum SortingType {
 }
 
 export enum APIRoute {
-  Places = '/offers'
+  Places = '/offers',
+  Login = '/login',
+  Logout = '/logout',
 }

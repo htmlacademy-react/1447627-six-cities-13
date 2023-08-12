@@ -1,7 +1,7 @@
 import React from 'react';
 import {Helmet} from 'react-helmet-async';
 import {Link} from 'react-router-dom';
-import Logo from '../../components/logo';
+import Header from '../../components/header';
 
 function Page404(): React.JSX.Element {
   return(
@@ -9,15 +9,7 @@ function Page404(): React.JSX.Element {
       <Helmet>
         <title>6 cities: 404</title>
       </Helmet>
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Logo additionalClassName="header__logo" isActive/>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
       <main className="page__main page__main--404">
         <div className="page__not-found not-found container">
           <b className="not-found__heading">404 Not Found</b>
