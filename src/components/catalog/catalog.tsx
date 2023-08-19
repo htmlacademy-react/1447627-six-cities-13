@@ -1,20 +1,21 @@
 import React, {useState} from 'react';
 import Map from '../map';
-import PlacesList from '../places-list';
+import OffersList from '../offers-list';
 import Sorting from '../sorting';
-import {Place} from '../../types';
+import {OfferPreviewsData} from '../../types';
 import useAppSelector from '../../hooks/use-app-selector';
 import cn from 'classnames';
-import {SortingType} from '../../const';
+import {OffersSortingType} from '../../const';
+import {getOfferMarkersData} from '../../util';
 
 type CatalogProps = {
-  allPlaces: Place[];
+  offers: OfferPreviewsData;
 }
 
-function Catalog({allPlaces}: CatalogProps): React.JSX.Element {
+function Catalog({offers}: CatalogProps): React.JSX.Element {
   const [activePlaceId, setActivePlaceId] = useState('');
   const currentCity = useAppSelector((state) => state.filter.city);
-  const [sortingType, setSortingType] = useState(SortingType.Popular);
+  const [sortingType, setSortingType] = useState(OffersSortingType.Popular);
 
   const handlePlaceCardMouseEnter = (id: string): void => {
     setActivePlaceId(id);
@@ -24,31 +25,33 @@ function Catalog({allPlaces}: CatalogProps): React.JSX.Element {
     setActivePlaceId('');
   };
 
-  const changeSortingType = (type: SortingType): void => {
+  const changeSortingType = (type: OffersSortingType): void => {
     setSortingType(type);
   };
 
-  const sortPlaces = (places: Place[], type: SortingType) => {
+  const sortOffers = (data: OfferPreviewsData, type: OffersSortingType) => {
     switch (type) {
-      case SortingType.PriceDecrease:
-        return places.sort((a, b) => b.price - a.price);
-      case SortingType.PriceIncrease:
-        return places.sort((a, b) => a.price - b.price);
-      case SortingType.RatingDecrease:
-        return places.sort((a, b) => b.rating - a.rating);
-      case SortingType.Popular:
+      case OffersSortingType.PriceDecrease:
+        return data.sort((a, b) => b.price - a.price);
+      case OffersSortingType.PriceIncrease:
+        return data.sort((a, b) => a.price - b.price);
+      case OffersSortingType.RatingDecrease:
+        return data.sort((a, b) => b.rating - a.rating);
+      case OffersSortingType.Popular:
       default:
-        return places;
+        return data;
     }
   };
 
-  const placesByCurrentCity = allPlaces.filter((place) => place.city.name === currentCity);
-  const sortedPlacesByCurrentCity = sortPlaces(placesByCurrentCity.slice(), sortingType);
+  const offersByCurrentCity = offers.filter((place) => place.city.name === currentCity);
+  const offerMarkersByCurrentCity = getOfferMarkersData(offersByCurrentCity);
+
+  const sortedOffersByCurrentCity = sortOffers(offersByCurrentCity.slice(), sortingType);
 
   let currentCityLocation;
 
-  if (placesByCurrentCity.length) {
-    currentCityLocation = placesByCurrentCity[0]?.city.location;
+  if (offersByCurrentCity.length) {
+    currentCityLocation = offersByCurrentCity[0]?.city.location;
   }
 
   return(
@@ -56,17 +59,17 @@ function Catalog({allPlaces}: CatalogProps): React.JSX.Element {
       <div
         className={cn(
           'cities__places-container container',
-          {'cities__places-container--empty': !placesByCurrentCity.length}
+          {'cities__places-container--empty': !offersByCurrentCity.length}
         )}
       >
-        {placesByCurrentCity.length ? (
+        {offersByCurrentCity.length ? (
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{placesByCurrentCity.length} places to stay in {currentCity}</b>
+            <b className="places__found">{offersByCurrentCity.length} places to stay in {currentCity}</b>
             <Sorting currentType={sortingType} onChangeSortingType={changeSortingType} />
-            <PlacesList
+            <OffersList
               additionalClassName="cities__places-list tabs__content"
-              places={sortedPlacesByCurrentCity}
+              data={sortedOffersByCurrentCity}
               grid="multicolumn"
               onPlaceCardMouseEnter={handlePlaceCardMouseEnter}
               onPlaceCardMouseLeave={handlePlaceCardMouseLeave}
@@ -85,7 +88,7 @@ function Catalog({allPlaces}: CatalogProps): React.JSX.Element {
             <Map
               additionalClassName="cities__map"
               location={currentCityLocation}
-              places={placesByCurrentCity}
+              markers={offerMarkersByCurrentCity}
               activePlaceId={activePlaceId}
             />
           )}

@@ -1,19 +1,27 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {
+  requireAuthorization,
+  loadAllOffersData,
+  setAllOffersDataLoadingStatus,
+  loadNearbyOffersData,
+  loadOfferCommentsData,
   setFilterCity,
-  loadAllPlaces,
-  setPlacesDataLoadingStatus,
-  requireAuthorization
+  loadOfferData,
+  setOfferDataLoadingStatus,
 } from './action';
 import {AuthorizationStatus, CITIES} from '../const';
-import {Place} from '../types';
+import {OfferPreviewsData, OfferFullData, ReviewsData} from '../types';
 
 type InitialState = {
   filter: {
     city: string;
   };
-  places: Place[];
-  isPlacesDataLoading: boolean;
+  allOffers: OfferPreviewsData;
+  isAllOffersDataLoading: boolean;
+  nearbyOffers: OfferPreviewsData;
+  offer: OfferFullData | null;
+  isOfferDataLoading: boolean;
+  comments: ReviewsData;
   authorizationStatus: AuthorizationStatus;
 }
 
@@ -21,24 +29,40 @@ const initialState: InitialState = {
   filter: {
     city: CITIES[0]
   },
-  places: [],
-  isPlacesDataLoading: false,
-  authorizationStatus: AuthorizationStatus.Unknown
+  allOffers: [],
+  isAllOffersDataLoading: false,
+  nearbyOffers: [],
+  offer: null,
+  isOfferDataLoading: false,
+  comments: [],
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(loadAllOffersData, (state, action) => {
+      state.allOffers = action.payload;
+    })
+    .addCase(setAllOffersDataLoadingStatus, (state, action) => {
+      state.isAllOffersDataLoading = action.payload;
+    })
     .addCase(setFilterCity, (state, action) => {
       state.filter.city = action.payload;
     })
-    .addCase(loadAllPlaces , (state, action) => {
-      state.places = action.payload;
+    .addCase(loadOfferData, (state, action) => {
+      state.offer = action.payload;
     })
-    .addCase(setPlacesDataLoadingStatus, (state, action) => {
-      state.isPlacesDataLoading = action.payload;
+    .addCase(loadNearbyOffersData, (state, action) => {
+      state.nearbyOffers = action.payload;
     })
-    .addCase(requireAuthorization, (state, action) => {
-      state.authorizationStatus = action.payload;
+    .addCase(loadOfferCommentsData, (state, action) => {
+      state.comments = action.payload;
+    })
+    .addCase(setOfferDataLoadingStatus, (state, action) => {
+      state.isOfferDataLoading = action.payload;
     });
 });
 
