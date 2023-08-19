@@ -1,9 +1,9 @@
 import React from 'react';
 import Rating from '../rating';
-import {Review} from '../../types';
+import {ReviewData} from '../../types';
 
 type ReviewProps = {
-  data: Review;
+  data: ReviewData;
 }
 
 const DATE_STRING_LENGTH = 10;

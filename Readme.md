@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
-* Студент: [Рустам](https://up.htmlacademy.ru/react/13/user/1447627).
-* Наставник: [Петр Хасанов](https://htmlacademy.ru/profile/id1058473).
+* Студент: [Рустам](https://up.htmlacademy.ru/react/13/user/1447627)
+* Наставник: –
 
 ---
 

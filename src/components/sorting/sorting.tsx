@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import cn from 'classnames';
-import {SortingType} from '../../const';
+import {OffersSortingType} from '../../const';
 
 type SortingProps = {
-  currentType: SortingType;
-  onChangeSortingType: (type: SortingType) => void;
+  currentType: OffersSortingType;
+  onChangeSortingType: (type: OffersSortingType) => void;
 }
 
 function Sorting({currentType, onChangeSortingType}: SortingProps): React.JSX.Element {
@@ -29,7 +29,7 @@ function Sorting({currentType, onChangeSortingType}: SortingProps): React.JSX.El
           {'places__options--opened': optionsOpening}
         )}
       >
-        {Object.values(SortingType).map((type) => (
+        {Object.values(OffersSortingType).map((type) => (
           <li
             className={cn(
               'places__option',

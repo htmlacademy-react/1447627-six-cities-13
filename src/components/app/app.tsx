@@ -2,22 +2,21 @@ import React from 'react';
 import {AppRoute} from '../../const';
 import {Route, Routes} from 'react-router-dom';
 import {HelmetProvider} from 'react-helmet-async';
-import FavoritesPage from '../../pages/favorites';
-import LoginPage from '../../pages/login';
-import MainPage from '../../pages/main';
-import Page404 from '../../pages/404';
-import OfferPage from '../../pages/offer';
+import FavoritesPage from '../../pages/favorites-page';
+import LoginPage from '../../pages/login-page';
+import MainPage from '../../pages/main-page';
+import Page404 from '../../pages/page-404';
+import OfferPage from '../../pages/offer-page';
 import PrivateRoute from '../private-route';
-import {Place, Review} from '../../types';
+import {OfferPreviewsData} from '../../types';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 
 type AppProps = {
-  places: Place[];
-  reviews: Review[];
+  places: OfferPreviewsData;
 }
 
-function App({places, reviews}: AppProps): React.JSX.Element {
+function App({places}: AppProps): React.JSX.Element {
   return(
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>
@@ -30,7 +29,7 @@ function App({places, reviews}: AppProps): React.JSX.Element {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute>
-                <FavoritesPage places={places} />
+                <FavoritesPage offers={places} />
               </PrivateRoute>
             }
           />
@@ -40,10 +39,10 @@ function App({places, reviews}: AppProps): React.JSX.Element {
           />
           <Route
             path={`${AppRoute.Offer}/:id`}
-            element={<OfferPage places={places} reviews={reviews}/>}
+            element={<OfferPage />}
           />
           <Route
-            path={AppRoute.Page404}
+            path={AppRoute.NotFound}
             element={<Page404 />}
           />
         </Routes>

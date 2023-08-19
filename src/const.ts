@@ -3,7 +3,7 @@ export enum AppRoute {
   Login = '/login',
   Offer = '/offer',
   Root = '/',
-  Page404 = '*'
+  NotFound = '*'
 }
 
 export const CITIES = [
@@ -21,15 +21,20 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
-export enum SortingType {
+export enum OffersSortingType {
   Popular = 'Popular',
   PriceIncrease = 'Price: low to high',
   PriceDecrease = 'Price: high to low',
   RatingDecrease = 'Top rated first'
 }
 
+export enum CommentsSortingType {
+  DateDecrease = 'new to old',
+}
+
 export enum APIRoute {
-  Places = '/offers',
+  Offers = '/offers',
   Login = '/login',
   Logout = '/logout',
+  Comments = '/comments',
 }

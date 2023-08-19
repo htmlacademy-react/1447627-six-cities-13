@@ -1,20 +1,39 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, FormEvent} from 'react';
+import useAppDispatch from '../../hooks/use-app-dispatch';
+import useAppSelector from '../../hooks/use-app-selector';
+import {sendComment} from '../../store/api-actions';
 
 function ReviewForm(): React.JSX.Element {
   const [formData, setFormData] = useState({
-    rating: '',
-    review: ''
+    rating: 0,
+    comment: '',
   });
+
+  const offerId = useAppSelector((state) => state.offer)?.id;
+  const dispatch = useAppDispatch();
+
+  const checkFormValidity = () => !!formData.rating && !!formData.comment;
+  const isValid = checkFormValidity();
 
   const handleFieldChange = ({target}: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
     const {name, value} = target;
-    setFormData({...formData, [name]: value});
+    setFormData({...formData, [name]: name === 'rating' ? +value : value});
+  };
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    if (!offerId) {
+      return;
+    }
+
+    dispatch(sendComment({reviewContent: formData, offerId: offerId}));
   };
 
   return (
-    <form className="reviews__form form" action="#" method="post">
-      <label className="reviews__label form__label" htmlFor="review">
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
+      <label className="reviews__label form__label" htmlFor="comment">
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
@@ -24,7 +43,7 @@ function ReviewForm(): React.JSX.Element {
           defaultValue={5}
           id="5-stars"
           type="radio"
-          checked={formData.rating === '5'}
+          checked={formData.rating === 5}
           onChange={handleFieldChange}
         />
         <label
@@ -42,7 +61,7 @@ function ReviewForm(): React.JSX.Element {
           defaultValue={4}
           id="4-stars"
           type="radio"
-          checked={formData.rating === '4'}
+          checked={formData.rating === 4}
           onChange={(handleFieldChange)}
         />
         <label
@@ -60,7 +79,7 @@ function ReviewForm(): React.JSX.Element {
           defaultValue={3}
           id="3-stars"
           type="radio"
-          checked={formData.rating === '3'}
+          checked={formData.rating === 3}
           onChange={handleFieldChange}
         />
         <label
@@ -78,7 +97,7 @@ function ReviewForm(): React.JSX.Element {
           defaultValue={2}
           id="2-stars"
           type="radio"
-          checked={formData.rating === '2'}
+          checked={formData.rating === 2}
           onChange={handleFieldChange}
         />
         <label
@@ -96,7 +115,7 @@ function ReviewForm(): React.JSX.Element {
           defaultValue={1}
           id="1-star"
           type="radio"
-          checked={formData.rating === '1'}
+          checked={formData.rating === 1}
           onChange={handleFieldChange}
         />
         <label
@@ -111,10 +130,10 @@ function ReviewForm(): React.JSX.Element {
       </div>
       <textarea
         className="reviews__textarea form__textarea"
-        id="review"
-        name="review"
+        id="comment"
+        name="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        value={formData.review}
+        value={formData.comment}
         onChange={handleFieldChange}
       />
       <div className="reviews__button-wrapper">
@@ -127,7 +146,7 @@ function ReviewForm(): React.JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled
+          disabled={!isValid}
         >
           Submit
         </button>

@@ -1,7 +1,7 @@
 import {useEffect, useRef} from 'react';
 import {Map, Icon, layerGroup, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {Place} from '../../types';
+import {MapMarkersData} from '../../types';
 
 const MarkerIcon = {
   Width: 27,
@@ -18,19 +18,16 @@ function createIcon(url: string) {
   });
 }
 
-function useMapMarkers(map: Map | null, places: Place[], activePlaceId: string): void {
+function useMapMarkers(map: Map | null, markers: MapMarkersData, activePlaceId: string): void {
   const isRenderedRef = useRef(false);
 
   useEffect(() => {
-    if (map && places?.length) {
+    if (map && markers?.length) {
       const markerLayer = layerGroup().addTo(map);
 
-      places.forEach((place) => {
-        new Marker({
-          lat: place.location.latitude,
-          lng: place.location.longitude
-        }, {
-          icon: place.id === activePlaceId
+      markers.forEach((marker) => {
+        new Marker(marker.coordinates, {
+          icon: marker.id === activePlaceId
             ? createIcon(MarkerIcon.ActiveTypeUrl)
             : createIcon(MarkerIcon.DefaultTypeUrl)
         }).addTo(markerLayer);
@@ -42,7 +39,7 @@ function useMapMarkers(map: Map | null, places: Place[], activePlaceId: string):
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, places, activePlaceId]);
+  }, [map, markers, activePlaceId]);
 }
 
 export default useMapMarkers;

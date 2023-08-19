@@ -1,33 +1,46 @@
 import React from 'react';
 import ReviewForm from '../review-form';
 import ReviewsList from '../reviews-list';
-import {Review} from '../../types';
+import {ReviewData, ReviewsData} from '../../types';
+import {CommentsSortingType} from '../../const';
+import useAppSelector from '../../hooks/use-app-selector';
+import {AuthorizationStatus} from '../../const';
 
 type ReviewsProps = {
   additionalClassName?: string;
-  reviews: Review[];
+  data: ReviewsData;
+  maxCount?: number;
+  sortingType?: CommentsSortingType;
 }
 
-const REVIEWS_MAX_COUNT = 10;
+const sortReviews = (data: ReviewsData, type: CommentsSortingType) => {
+  switch (type) {
+    case CommentsSortingType.DateDecrease:
+      return data.slice().sort((a: ReviewData, b: ReviewData) => +new Date(b.date) - +new Date(a.date));
+    default:
+      return data;
+  }
+};
 
-const sortReviewsByDate = (reviews: Review[]) => reviews
-  .slice()
-  .sort(
-    (a: Review, b: Review) => +new Date(b.date) - +new Date(a.date)
-  );
+function Reviews({additionalClassName, data, maxCount, sortingType}: ReviewsProps): React.JSX.Element {
+  let reviews = data;
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
-function Reviews({additionalClassName, reviews}: ReviewsProps): React.JSX.Element {
+  if (sortingType) {
+    reviews = sortReviews(reviews, sortingType);
+  }
+
+  if (maxCount) {
+    reviews = reviews.slice(0, maxCount);
+  }
+
   return(
     <section className={`reviews ${additionalClassName || ''}`}>
-      {reviews?.length && (
-        <>
-          <h2 className="reviews__title">
-            Reviews · <span className="reviews__amount">{reviews.length}</span>
-          </h2>
-          <ReviewsList reviews={sortReviewsByDate(reviews).slice(0, REVIEWS_MAX_COUNT)} />
-        </>
-      )}
-      <ReviewForm />
+      <h2 className="reviews__title">
+        Reviews · <span className="reviews__amount">{data.length}</span>
+      </h2>
+      {reviews && <ReviewsList reviews={reviews} />}
+      {authorizationStatus === AuthorizationStatus.Auth && <ReviewForm />}
     </section>
   );
 }

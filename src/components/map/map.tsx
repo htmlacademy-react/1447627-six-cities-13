@@ -3,19 +3,19 @@ import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/use-map';
 import useMapMarkers from '../../hooks/use-map-markers';
 import useMapView from '../../hooks/use-map-view';
-import {Place, Location} from '../../types';
+import {MapMarkersData, Location} from '../../types';
 
 type MapProps = {
   additionalClassName?: string;
   location: Location;
-  places: Place[];
+  markers: MapMarkersData;
   activePlaceId?: string;
 }
 
-function Map({additionalClassName, location, places, activePlaceId = ''}: MapProps): React.JSX.Element {
+function Map({additionalClassName, location, markers, activePlaceId = ''}: MapProps): React.JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef);
-  useMapMarkers(map, places, activePlaceId);
+  useMapMarkers(map, markers, activePlaceId);
   useMapView(map, location);
 
   return (
