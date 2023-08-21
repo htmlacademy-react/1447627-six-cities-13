@@ -1,7 +1,8 @@
 import React from 'react';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';
-import {setFilterCity} from '../../store/action';
+import {getFilterCity} from '../../store/filter-process/filter-process.selectors';
+import {setFilterCity} from '../../store/filter-process/filter-process.slice';
 import cn from 'classnames';
 
 type FilterProps = {
@@ -10,7 +11,7 @@ type FilterProps = {
 
 function Filter({cities}: FilterProps): React.JSX.Element {
   const dispatch = useAppDispatch();
-  const currentCity = useAppSelector((state) => state.filter.city);
+  const currentCity = useAppSelector(getFilterCity);
 
   return(
     <div className="tabs">

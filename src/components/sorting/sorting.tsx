@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, memo} from 'react';
 import cn from 'classnames';
 import {OffersSortingType} from '../../const';
 
@@ -50,4 +50,6 @@ function Sorting({currentType, onChangeSortingType}: SortingProps): React.JSX.El
   );
 }
 
-export default Sorting;
+const MemoizedSorting = memo(Sorting);
+
+export default MemoizedSorting;

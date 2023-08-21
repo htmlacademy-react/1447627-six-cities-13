@@ -5,6 +5,7 @@ import {ReviewData, ReviewsData} from '../../types';
 import {CommentsSortingType} from '../../const';
 import useAppSelector from '../../hooks/use-app-selector';
 import {AuthorizationStatus} from '../../const';
+import {getAutorizationStatus} from '../../store/user-process/user-process.selectors';
 
 type ReviewsProps = {
   additionalClassName?: string;
@@ -24,7 +25,7 @@ const sortReviews = (data: ReviewsData, type: CommentsSortingType) => {
 
 function Reviews({additionalClassName, data, maxCount, sortingType}: ReviewsProps): React.JSX.Element {
   let reviews = data;
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAutorizationStatus);
 
   if (sortingType) {
     reviews = sortReviews(reviews, sortingType);

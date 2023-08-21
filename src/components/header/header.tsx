@@ -5,9 +5,10 @@ import {AuthorizationStatus} from '../../const';
 import useAppSelector from '../../hooks/use-app-selector';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import {logoutAction} from '../../store/api-actions';
+import {getAutorizationStatus} from '../../store/user-process/user-process.selectors';
 
 function Header(): React.JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAutorizationStatus);
   const location = useLocation();
   const dispatch = useAppDispatch();
 
