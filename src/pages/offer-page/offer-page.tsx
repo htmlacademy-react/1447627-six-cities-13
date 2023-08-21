@@ -15,14 +15,15 @@ import {fetchOfferAction} from '../../store/api-actions';
 import {getOfferMarkersData} from '../../util';
 import {NEARBY_OFFERS_COUNT, REVIEWS_MAX_COUNT} from './const';
 import {CommentsSortingType} from '../../const';
+import {getOffer, getOfferDataLoadingStatus} from '../../store/app-data/app-data.selectors';
 
 function OfferPage(): React.JSX.Element {
   const params = useParams();
   const offerId = params.id as string;
 
-  const offer = useAppSelector((state) => state.offer);
+  const offer = useAppSelector(getOffer);
   const offerMarker = getOfferMarkersData(offer ? [offer] : []);
-  const isOfferDataLoading = useAppSelector((state) => state.isOfferDataLoading);
+  const isOfferDataLoading = useAppSelector(getOfferDataLoadingStatus);
 
   const comments = useCommentsData(offerId);
 
