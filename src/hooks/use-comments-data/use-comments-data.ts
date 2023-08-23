@@ -3,7 +3,7 @@ import {ReviewsData} from '../../types';
 import useAppDispatch from '../use-app-dispatch';
 import useAppSelector from '../use-app-selector';
 import {fetchOfferCommentsAction} from '../../store/api-actions';
-import {getOfferComments} from '../../store/app-data/app-data.selectors';
+import {getOfferComments} from '../../store/offer-comments/offer-comments.selectors';
 
 function useCommentsData(offerId: string): ReviewsData {
   const dispatch = useAppDispatch();

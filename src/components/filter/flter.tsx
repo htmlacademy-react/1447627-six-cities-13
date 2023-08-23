@@ -1,8 +1,8 @@
 import React from 'react';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';
-import {getFilterCity} from '../../store/filter-process/filter-process.selectors';
-import {setFilterCity} from '../../store/filter-process/filter-process.slice';
+import {getFilterCity} from '../../store/filter/filter.selectors';
+import {setFilterCity} from '../../store/filter/filter.slice';
 import cn from 'classnames';
 
 type FilterProps = {

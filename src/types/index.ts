@@ -10,9 +10,6 @@ import ReviewsData from './reviews-data.ts';
 import State from './state.ts';
 import AppDispatch from './app-dispatch.ts';
 import UserData from './user-data.ts';
-import UserProcess from './user-process.ts';
-import AppData from './app-data.ts';
-import FilterProcess from './filter-process.ts';
 import CityName from './city-name.ts';
 
 export type {
@@ -28,8 +25,5 @@ export type {
   ReviewsData,
   State,
   UserData,
-  UserProcess,
-  AppData,
-  FilterProcess,
   CityName,
 };

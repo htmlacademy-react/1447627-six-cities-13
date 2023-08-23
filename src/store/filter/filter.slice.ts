@@ -1,14 +1,20 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {CITIES, NameSpace} from '../../const';
-import {FilterProcess, CityName} from '../../types';
+import {CityName} from '../../types';
 
-const initialState: FilterProcess = {
+type Filter = {
+  filter: {
+    city: string;
+  };
+}
+
+const initialState: Filter = {
   filter: {
     city: CITIES[0]
   },
 };
 
-export const filterProcess = createSlice({
+export const filter = createSlice({
   name: NameSpace.User,
   initialState,
   reducers: {
@@ -18,4 +24,4 @@ export const filterProcess = createSlice({
   },
 });
 
-export const {setFilterCity} = filterProcess.actions;
+export const {setFilterCity} = filter.actions;

@@ -8,14 +8,14 @@ import DataError from '../../components/data-error';
 import {CITIES} from '../../const';
 import useAppSelector from '../../hooks/use-app-selector';
 import {
-  getAllOffers,
   getAllOffersDataLoadingStatus,
   getAllOffersLoadingErrorStatus
-} from '../../store/app-data/app-data.selectors';
+} from '../../store/catalog/catalog.selectors';
 import {fetchAllOffersAction} from '../../store/api-actions';
+import useAllOffersData from '../../hooks/use-all-offers-data';
 
 function MainPage(): React.JSX.Element {
-  const allOffers = useAppSelector(getAllOffers);
+  const allOffers = useAllOffersData();
   const isAllOffersDataLoading = useAppSelector(getAllOffersDataLoadingStatus);
   const allOffersHasError = useAppSelector(getAllOffersLoadingErrorStatus);
 

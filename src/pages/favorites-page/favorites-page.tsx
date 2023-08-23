@@ -3,14 +3,13 @@ import {Helmet} from 'react-helmet-async';
 import Footer from '../../components/footer';
 import Header from '../../components/header';
 import Favorites from '../../components/favorites';
-import {OfferPreviewsData} from '../../types';
+import useAppSelector from '../../hooks/use-app-selector';
+import {getFavoriteOffers} from '../../store/favorite-offers/favorite-offers.selectors';
 
-type FavoritesPageProps = {
-  offers: OfferPreviewsData;
-}
+function FavoritesPage(): React.JSX.Element {
+  const favoritesOffers = useAppSelector(getFavoriteOffers);
 
-function FavoritesPage({offers}: FavoritesPageProps): React.JSX.Element {
-  const isEmpty = !offers.length;
+  const isEmpty = !favoritesOffers.length;
 
   return(
     <div className={`page ${isEmpty ? 'page--favorites-empty' : ''}`}>
@@ -20,7 +19,7 @@ function FavoritesPage({offers}: FavoritesPageProps): React.JSX.Element {
       <Header />
       <main className={`page__main page__main--favorites ${isEmpty ? 'page__main--favorites-empty' : ''}`}>
         <div className="page__favorites-container container">
-          <Favorites offers={offers}/>
+          <Favorites offers={favoritesOffers}/>
         </div>
       </main>
       <Footer />

@@ -8,15 +8,10 @@ import MainPage from '../../pages/main-page';
 import Page404 from '../../pages/page-404';
 import OfferPage from '../../pages/offer-page';
 import PrivateRoute from '../private-route';
-import {OfferPreviewsData} from '../../types';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 
-type AppProps = {
-  places: OfferPreviewsData;
-}
-
-function App({places}: AppProps): React.JSX.Element {
+function App(): React.JSX.Element {
   return(
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>
@@ -29,7 +24,7 @@ function App({places}: AppProps): React.JSX.Element {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute>
-                <FavoritesPage offers={places} />
+                <FavoritesPage />
               </PrivateRoute>
             }
           />

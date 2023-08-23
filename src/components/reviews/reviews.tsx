@@ -5,7 +5,7 @@ import {ReviewData, ReviewsData} from '../../types';
 import {CommentsSortingType} from '../../const';
 import useAppSelector from '../../hooks/use-app-selector';
 import {AuthorizationStatus} from '../../const';
-import {getAutorizationStatus} from '../../store/user-process/user-process.selectors';
+import {getAutorizationStatus} from '../../store/user/user.selectors';
 
 type ReviewsProps = {
   additionalClassName?: string;
