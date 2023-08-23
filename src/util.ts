@@ -31,6 +31,8 @@ const createUniqueRandomIntegerGenerator = (from: number, to: number) => {
   };
 };
 
+const getRandomArrayItem = <T>(array: T[]): T => array[getRandomInteger(0, array.length - 1)];
+
 const getRandomUniqueArrayItems = <T>(array: T[], count: number): T[] => {
   const getUniqueRandomArrayIndex = createUniqueRandomIntegerGenerator(0, array.length - 1);
   return Array.from({length: count}, () => array[getUniqueRandomArrayIndex()]);
@@ -45,4 +47,4 @@ const getOfferMarkersData = (offers: OfferPreviewsData | OfferFullData[]): MapMa
     },
   }));
 
-export {getRandomUniqueArrayItems, getOfferMarkersData};
+export {getRandomUniqueArrayItems, getOfferMarkersData, getRandomArrayItem};

@@ -1,15 +1,27 @@
 import React from 'react';
+import {Link, Navigate} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import Header from '../../components/header';
 import {useRef, FormEvent} from 'react';
 import useAppDispatch from '../../hooks/use-app-dispatch';
+import useAppSelector from '../../hooks/use-app-selector';
 import {loginAction} from '../../store/api-actions';
+import {getAutorizationStatus} from '../../store/user/user.selectors';
+import {AppRoute, AuthorizationStatus, CITIES} from '../../const';
+import {getRandomArrayItem} from '../../util';
+import {setFilterCity} from '../../store/filter/filter.slice';
 
 function LoginPage(): React.JSX.Element {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const city = getRandomArrayItem(CITIES);
 
   const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector(getAutorizationStatus);
+
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    return <Navigate to={AppRoute.Root}/>;
+  }
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -51,8 +63,10 @@ function LoginPage(): React.JSX.Element {
                   className="login__input form__input"
                   type="password"
                   name="password"
+                  pattern="^(?=.*[a-zA-Z])(?=.*[0-9])[0-9a-zA-Z]{2,}$"
                   placeholder="Password"
                   required
+                  title="minimum 1 letter and 1 number"
                 />
               </div>
               <button
@@ -65,9 +79,15 @@ function LoginPage(): React.JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>Amsterdam</span>
-              </a>
+              <Link
+                className="locations__item-link"
+                to={AppRoute.Root}
+                onClick={() => {
+                  dispatch(setFilterCity(city));
+                }}
+              >
+                <span>{city}</span>
+              </Link>
             </div>
           </section>
         </div>

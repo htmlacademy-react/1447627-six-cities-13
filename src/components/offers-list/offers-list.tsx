@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import OfferPreview from '../offer-preview';
 import styles from './offers-list.module.css';
 import {OfferPreviewsData} from '../../types';
@@ -44,4 +44,6 @@ function OffersList({
   );
 }
 
-export default OffersList;
+const MemoizedOffersList = memo(OffersList);
+
+export default MemoizedOffersList;

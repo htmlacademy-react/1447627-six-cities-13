@@ -5,12 +5,14 @@ import {AuthorizationStatus} from '../../const';
 import useAppSelector from '../../hooks/use-app-selector';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import {logoutAction} from '../../store/api-actions';
-import {getAutorizationStatus} from '../../store/user-process/user-process.selectors';
+import {getAutorizationStatus} from '../../store/user/user.selectors';
+import {getFavoriteOffers} from '../../store/favorite-offers/favorite-offers.selectors';
 
 function Header(): React.JSX.Element {
   const authorizationStatus = useAppSelector(getAutorizationStatus);
   const location = useLocation();
   const dispatch = useAppDispatch();
+  const favoritesCount = useAppSelector(getFavoriteOffers).length;
 
   return (
     <header className="header">
@@ -33,7 +35,7 @@ function Header(): React.JSX.Element {
                         <span className="header__user-name user__name">
                           Oliver.conner@gmail.com
                         </span>
-                        <span className="header__favorite-count">3</span>
+                        <span className="header__favorite-count">{favoritesCount}</span>
                       </>
                     ) : (
                       <span className="header__login">Sign in</span>

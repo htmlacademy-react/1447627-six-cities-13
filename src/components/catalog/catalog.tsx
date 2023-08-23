@@ -7,7 +7,7 @@ import useAppSelector from '../../hooks/use-app-selector';
 import cn from 'classnames';
 import {OffersSortingType} from '../../const';
 import {getOfferMarkersData} from '../../util';
-import {getFilterCity} from '../../store/filter-process/filter-process.selectors';
+import {getFilterCity} from '../../store/filter/filter.selectors';
 
 type CatalogProps = {
   offers: OfferPreviewsData;
@@ -18,13 +18,13 @@ function Catalog({offers}: CatalogProps): React.JSX.Element {
   const currentCity = useAppSelector(getFilterCity);
   const [sortingType, setSortingType] = useState(OffersSortingType.Popular);
 
-  const handlePlaceCardMouseEnter = (id: string): void => {
+  const handlePlaceCardMouseEnter = useCallback((id: string): void => {
     setActivePlaceId(id);
-  };
+  }, []);
 
-  const handlePlaceCardMouseLeave = (): void => {
+  const handlePlaceCardMouseLeave = useCallback((): void => {
     setActivePlaceId('');
-  };
+  }, []);
 
   const changeSortingType = useCallback(
     (type: OffersSortingType): void => {

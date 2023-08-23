@@ -15,7 +15,7 @@ import {fetchOfferAction} from '../../store/api-actions';
 import {getOfferMarkersData} from '../../util';
 import {NEARBY_OFFERS_COUNT, REVIEWS_MAX_COUNT} from './const';
 import {CommentsSortingType} from '../../const';
-import {getOffer, getOfferDataLoadingStatus} from '../../store/app-data/app-data.selectors';
+import {getOffer, getOfferDataLoadingStatus} from '../../store/offer/offer.selectors';
 
 function OfferPage(): React.JSX.Element {
   const params = useParams();

@@ -37,10 +37,21 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
   Comments = '/comments',
+  Favorite = '/favorite',
 }
 
 export enum NameSpace {
-  Data = 'DATA',
+  Catalog = 'CATALOG',
+  FavoriteOffers = 'FAVORITE_OFFERS',
   Filter = 'FILTER',
+  NearbyOffers = 'NEARBY_OFFERS',
+  Offer = 'OFFER',
+  OfferComment = 'OFFER_COMMENT',
+  OfferComments = 'OFFER_COMMENTS',
   User = 'USER',
+}
+
+export enum FavoriteActionCode {
+  Add = 1,
+  Remove = 0,
 }

@@ -3,10 +3,11 @@ import {StarTitle, StarValue} from './const';
 
 type StarRatingProps = {
   value: number;
+  disabled?: boolean;
   onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function StarRating({value, onChange}: StarRatingProps): React.JSX.Element {
+function StarRating({value, disabled, onChange}: StarRatingProps): React.JSX.Element {
   return(
     <div className="reviews__rating-form form__rating">
       <input
@@ -17,6 +18,7 @@ function StarRating({value, onChange}: StarRatingProps): React.JSX.Element {
         type="radio"
         checked={value === StarValue.Perfect}
         onChange={onChange}
+        disabled={disabled}
       />
       <label
         htmlFor={`${StarValue.Perfect}-stars`}
@@ -35,6 +37,7 @@ function StarRating({value, onChange}: StarRatingProps): React.JSX.Element {
         type="radio"
         checked={value === StarValue.Good}
         onChange={(onChange)}
+        disabled={disabled}
       />
       <label
         htmlFor={`${StarValue.Good}-stars`}
@@ -53,6 +56,7 @@ function StarRating({value, onChange}: StarRatingProps): React.JSX.Element {
         type="radio"
         checked={value === StarValue.NotBad}
         onChange={onChange}
+        disabled={disabled}
       />
       <label
         htmlFor={`${StarValue.NotBad}-stars`}
@@ -71,6 +75,7 @@ function StarRating({value, onChange}: StarRatingProps): React.JSX.Element {
         type="radio"
         checked={value === StarValue.Badly}
         onChange={onChange}
+        disabled={disabled}
       />
       <label
         htmlFor={`${StarValue.Badly}-stars`}
@@ -89,6 +94,7 @@ function StarRating({value, onChange}: StarRatingProps): React.JSX.Element {
         type="radio"
         checked={value === StarValue.Terribly}
         onChange={onChange}
+        disabled={disabled}
       />
       <label
         htmlFor={`${StarValue.Terribly}-star`}

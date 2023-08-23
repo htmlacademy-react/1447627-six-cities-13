@@ -68,7 +68,7 @@ function OfferPreview({
             <b className={styles.priceValue}>€{price}</b>{' '}
             <span className={styles.priceText}>/&nbsp;night</span>
           </div>
-          <BookmarkButton additionalClassName={styles.bookmarkButton} active={isFavorite}/>
+          <BookmarkButton additionalClassName={styles.bookmarkButton} active={isFavorite} offerId={id}/>
         </div>
         <Rating additionalClassName={styles.rating} value={rating} size='small' />
         <h2 className={styles.name}>

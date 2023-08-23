@@ -4,9 +4,9 @@ import useAppDispatch from '../use-app-dispatch';
 import useAppSelector from '../use-app-selector';
 import {fetchNearbyOffersAction} from '../../store/api-actions';
 import {getRandomUniqueArrayItems} from '../../util';
-import {getNearbyOffers} from '../../store/app-data/app-data.selectors';
+import {getNearbyOffers} from '../../store/nearby-offers/nearby-offers.selectors';
 
-function useNearbyOffers(offerId: string, count: number): OfferPreviewsData {
+function useNearbyOffersData(offerId: string, count: number): OfferPreviewsData {
   const dispatch = useAppDispatch();
   const allNearbyOffers = useAppSelector(getNearbyOffers);
 
@@ -21,4 +21,4 @@ function useNearbyOffers(offerId: string, count: number): OfferPreviewsData {
   }
 }
 
-export default useNearbyOffers;
+export default useNearbyOffersData;

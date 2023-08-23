@@ -3,6 +3,7 @@ import BookmarkButton from '../../components/bookmark-button';
 import Rating from '../../components/rating';
 import {OfferFullData} from '../../types';
 import Spinner from '../spinner';
+import {IMAGES_MAX_COUNT} from './const';
 import cn from 'classnames';
 
 type OfferProps = {
@@ -18,7 +19,7 @@ function Offer({data, isDataLoading}: OfferProps): React.JSX.Element {
       <section className="offer">
         <div className="offer__gallery-container container">
           <div className="offer__gallery">
-            {data.images.map((image) => (
+            {data.images.slice(0, IMAGES_MAX_COUNT).map((image) => (
               <div className="offer__image-wrapper" key={image}>
                 <img
                   className="offer__image"
@@ -39,13 +40,14 @@ function Offer({data, isDataLoading}: OfferProps): React.JSX.Element {
                 width={31}
                 height={33}
                 active={data.isFavorite}
+                offerId={data.id}
               />
             </div>
             <Rating additionalClassName="offer__rating" value={data.rating} size="big" showLabel />
             <ul className="offer__features">
               <li className="offer__feature offer__feature--entire">{data.type}</li>
               <li className="offer__feature offer__feature--bedrooms">{data.bedrooms} Bedrooms</li>
-              <li className="offer__feature offer__feature--adults">Max {data.adults} adults</li>
+              <li className="offer__feature offer__feature--adults">Max {data.maxAdults} adults</li>
             </ul>
             <div className="offer__price">
               <b className="offer__price-value">€{data.price}</b>{' '}
