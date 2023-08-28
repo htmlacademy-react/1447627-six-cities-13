@@ -139,7 +139,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
 );
 
 export const sendOfferComment = createAsyncThunk<
-  void, {
+  ReviewData, {
     reviewContent: ReviewContent; offerId: string;
   }, {
   dispatch: AppDispatch;
@@ -147,9 +147,9 @@ export const sendOfferComment = createAsyncThunk<
   extra: AxiosInstance;
 }>(
   'comment/send',
-  async ({reviewContent, offerId}, {dispatch, extra: api}) => {
-    await api.post<ReviewData>(`${APIRoute.Comments}/${offerId}`, reviewContent);
-    dispatch(fetchOfferCommentsAction(offerId));
+  async ({reviewContent, offerId}, {extra: api}) => {
+    const {data} = await api.post<ReviewData>(`${APIRoute.Comments}/${offerId}`, reviewContent);
+    return data;
   },
 );
 

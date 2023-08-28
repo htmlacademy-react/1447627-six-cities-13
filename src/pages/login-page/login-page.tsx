@@ -6,7 +6,7 @@ import {useRef, FormEvent} from 'react';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';
 import {loginAction} from '../../store/api-actions';
-import {getAutorizationStatus} from '../../store/user/user.selectors';
+import {getAuthorizationStatus} from '../../store/user/user.selectors';
 import {AppRoute, AuthorizationStatus, CITIES} from '../../const';
 import {getRandomArrayItem} from '../../util';
 import {setFilterCity} from '../../store/filter/filter.slice';
@@ -17,7 +17,7 @@ function LoginPage(): React.JSX.Element {
   const city = getRandomArrayItem(CITIES);
 
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector(getAutorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Root}/>;

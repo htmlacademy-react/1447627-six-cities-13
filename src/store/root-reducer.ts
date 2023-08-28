@@ -2,7 +2,6 @@ import {combineReducers} from '@reduxjs/toolkit';
 import {NameSpace} from '../const';
 import {user} from './user/user.slice';
 import {filter} from './filter/filter.slice';
-import {offerComment} from './offer-comment/offer-comment.slice';
 import {offerComments} from './offer-comments/offer-comments.slice';
 import {favoriteOffers} from './favorite-offers/favorite-offers.slice';
 import {nearbyOffers} from './nearby-offers/nearby-offers.slice';
@@ -12,7 +11,6 @@ import {catalog} from './catalog/catalog.slice';
 export const rootReducer = combineReducers({
   [NameSpace.Filter]: filter.reducer,
   [NameSpace.User]: user.reducer,
-  [NameSpace.OfferComment]: offerComment.reducer,
   [NameSpace.OfferComments]: offerComments.reducer,
   [NameSpace.FavoriteOffers]: favoriteOffers.reducer,
   [NameSpace.NearbyOffers]: nearbyOffers.reducer,

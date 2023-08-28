@@ -5,11 +5,11 @@ import {AuthorizationStatus} from '../../const';
 import useAppSelector from '../../hooks/use-app-selector';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import {logoutAction} from '../../store/api-actions';
-import {getAutorizationStatus} from '../../store/user/user.selectors';
+import {getAuthorizationStatus} from '../../store/user/user.selectors';
 import {getFavoriteOffers} from '../../store/favorite-offers/favorite-offers.selectors';
 
 function Header(): React.JSX.Element {
-  const authorizationStatus = useAppSelector(getAutorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const location = useLocation();
   const dispatch = useAppDispatch();
   const favoritesCount = useAppSelector(getFavoriteOffers).length;
