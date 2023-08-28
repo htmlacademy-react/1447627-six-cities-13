@@ -7,6 +7,22 @@ type FavoritesSectionProps = {
   offers?: OfferPreviewsData;
 }
 
+const getOffersByCity = (offers: OfferPreviewsData) => {
+  const offersByCity: {
+    [city: string]: OfferPreviewsData;
+  } = {};
+
+  offers.forEach((offer) => {
+    if (offer.city.name in offersByCity) {
+      offersByCity[offer.city.name].push(offer);
+    } else {
+      offersByCity[offer.city.name] = [offer];
+    }
+  });
+
+  return offersByCity;
+};
+
 function EmptyFavoritesSection(): React.JSX.Element {
   return (
     <section className={`${styles.favorites} favorites--empty`}>
@@ -24,17 +40,7 @@ function FavoritesSection({offers}: FavoritesSectionProps): React.JSX.Element {
     return <EmptyFavoritesSection />;
   }
 
-  const offersByCity: {
-    [city: string]: OfferPreviewsData;
-  } = {};
-
-  offers.forEach((offer) => {
-    if (offer.city.name in offersByCity) {
-      offersByCity[offer.city.name].push(offer);
-    } else {
-      offersByCity[offer.city.name] = [offer];
-    }
-  });
+  const offersByCity = getOffersByCity(offers);
 
   return (
     <section className={styles.favorites}>

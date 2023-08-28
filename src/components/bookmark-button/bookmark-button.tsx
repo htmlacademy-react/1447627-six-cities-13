@@ -5,7 +5,7 @@ import useAppSelector from '../../hooks/use-app-selector';
 import {redirectToRoute} from '../../store/action';
 import {addOfferToFavorites, removeOfferFromFavorites} from '../../store/api-actions';
 import {AuthorizationStatus, AppRoute} from '../../const';
-import {getAutorizationStatus} from '../../store/user/user.selectors';
+import {getAuthorizationStatus} from '../../store/user/user.selectors';
 
 type BookmarkButtonProps = {
   active?: boolean;
@@ -23,7 +23,7 @@ function BookmarkButton({
   height = 19
 }: BookmarkButtonProps): React.JSX.Element {
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector(getAutorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const [isActive, setIsActive] = useState(active);
 
   const handleButtonClick = () => {

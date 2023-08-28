@@ -7,10 +7,10 @@ import {getOffer} from '../../store/offer/offer.selectors';
 import Textarea from '../textarea';
 import StarRating from '../star-rating';
 import {
-  getOfferCommentLoadingStatus,
   getOfferCommentSendingStatus,
-} from '../../store/offer-comment/offer-comment.selectors';
-import {resetSendedStatus} from '../../store/offer-comment/offer-comment.slice';
+  getOfferCommentSendedStatus,
+} from '../../store/offer-comments/offer-comments.selectors';
+import {resetCommentSendedStatus} from '../../store/offer-comments/offer-comments.slice';
 import {CommentLength} from './const';
 
 function ReviewForm(): React.JSX.Element {
@@ -24,13 +24,13 @@ function ReviewForm(): React.JSX.Element {
   const offerId = useAppSelector(getOffer)?.id;
   const dispatch = useAppDispatch();
 
-  const isCommentLoading = useAppSelector(getOfferCommentLoadingStatus);
-  const isSended = useAppSelector(getOfferCommentSendingStatus);
+  const isCommentLoading = useAppSelector(getOfferCommentSendingStatus);
+  const isSended = useAppSelector(getOfferCommentSendedStatus);
 
   useEffect(() => {
     if (isSended && formRef) {
       setFormData({...formData, rating: 0, comment: ''});
-      dispatch(resetSendedStatus());
+      dispatch(resetCommentSendedStatus());
     }
   }, [dispatch, isSended, formData]);
 
