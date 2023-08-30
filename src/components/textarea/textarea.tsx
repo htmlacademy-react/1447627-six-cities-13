@@ -17,6 +17,7 @@ function Textarea({value, disabled, onChange}: TextAreaProps): React.JSX.Element
       onChange={onChange}
       disabled={disabled}
       required
+      data-testid="textareaElement"
     />
   );
 }

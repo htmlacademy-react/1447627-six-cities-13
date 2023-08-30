@@ -54,6 +54,7 @@ function LoginPage(): React.JSX.Element {
                   name="email"
                   placeholder="Email"
                   required
+                  data-testid="emailElement"
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -67,6 +68,7 @@ function LoginPage(): React.JSX.Element {
                   placeholder="Password"
                   required
                   title="minimum 1 letter and 1 number"
+                  data-testid="passwordElement"
                 />
               </div>
               <button
