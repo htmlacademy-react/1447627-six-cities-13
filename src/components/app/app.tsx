@@ -10,8 +10,12 @@ import OfferPage from '../../pages/offer-page';
 import PrivateRoute from '../private-route';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
+import useAppSelector from '../../hooks/use-app-selector';
+import {getAuthorizationStatus} from '../../store/user/user.selectors';
 
 function App(): React.JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
   return(
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>
@@ -23,7 +27,7 @@ function App(): React.JSX.Element {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute>
+              <PrivateRoute authorizationStatus={authorizationStatus}>
                 <FavoritesPage />
               </PrivateRoute>
             }

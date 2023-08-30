@@ -9,7 +9,7 @@ type StarRatingProps = {
 
 function StarRating({value, disabled, onChange}: StarRatingProps): React.JSX.Element {
   return(
-    <div className="reviews__rating-form form__rating">
+    <div className="reviews__rating-form form__rating" data-testid="starRatingElement">
       <input
         className="form__rating-input visually-hidden"
         name="rating"
@@ -19,6 +19,7 @@ function StarRating({value, disabled, onChange}: StarRatingProps): React.JSX.Ele
         checked={value === StarValue.Perfect}
         onChange={onChange}
         disabled={disabled}
+        data-testid="starRatingItemElement"
       />
       <label
         htmlFor={`${StarValue.Perfect}-stars`}
@@ -38,6 +39,7 @@ function StarRating({value, disabled, onChange}: StarRatingProps): React.JSX.Ele
         checked={value === StarValue.Good}
         onChange={(onChange)}
         disabled={disabled}
+        data-testid="starRatingItemElement"
       />
       <label
         htmlFor={`${StarValue.Good}-stars`}
@@ -57,6 +59,7 @@ function StarRating({value, disabled, onChange}: StarRatingProps): React.JSX.Ele
         checked={value === StarValue.NotBad}
         onChange={onChange}
         disabled={disabled}
+        data-testid="starRatingItemElement"
       />
       <label
         htmlFor={`${StarValue.NotBad}-stars`}
@@ -76,6 +79,7 @@ function StarRating({value, disabled, onChange}: StarRatingProps): React.JSX.Ele
         checked={value === StarValue.Badly}
         onChange={onChange}
         disabled={disabled}
+        data-testid="starRatingItemElement"
       />
       <label
         htmlFor={`${StarValue.Badly}-stars`}
@@ -95,6 +99,7 @@ function StarRating({value, disabled, onChange}: StarRatingProps): React.JSX.Ele
         checked={value === StarValue.Terribly}
         onChange={onChange}
         disabled={disabled}
+        data-testid="starRatingItemElement"
       />
       <label
         htmlFor={`${StarValue.Terribly}-star`}

@@ -55,3 +55,5 @@ export enum FavoriteActionCode {
   Add = 1,
   Remove = 0,
 }
+
+export const PAGE_RENDERING_TIMEOUT = 250;
